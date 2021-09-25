@@ -14,7 +14,7 @@ const sequelize = new Sequelize(process.env.CONNECTION_STRING, {
 });
 sequelize
   .sync({
-    logging: console.log,
+    logging: false, //! turned off so it would stop blowing up my terminal, console.log()
   })
   .then(() => {
     console.log("Connection to database established successfully.");

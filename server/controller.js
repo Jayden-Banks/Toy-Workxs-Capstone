@@ -25,6 +25,7 @@ module.exports = {
     }
   },
   // Gets a profile from database using email, added bcrypt check on passHash and check along with email
+  // todo clean this up and try to only use try/catch and 3 res.status (no email, wrong password, server error)
   getProfile: async (req, res) => {
     const { email, password } = req.query;
     console.log(email, password);
@@ -32,7 +33,12 @@ module.exports = {
       where: { email },
     })
       .then(async function (account) {
-        if (await bcrypt.compare(password, account.passHash)) {
+        console.log(account)
+        if (!account) {
+          console.log(chalk.red("whoops"))
+          res.status(400).send("No user found")
+        }
+        else if (await bcrypt.compare(password, account.passHash)) {
           return account;
         }
         res.status(400).send("Incorrect password");
@@ -41,7 +47,8 @@ module.exports = {
         console.log(err);
         res.status(500).send(err)
       });
-    profile
+      console.log(profile)
+      profile
       ? res.status(200).send(profile)
       : res.status(404).send("User not Found");
   },
