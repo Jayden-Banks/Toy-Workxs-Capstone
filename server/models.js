@@ -45,7 +45,7 @@ module.exports = {
         } catch (err) {console.log(err)}
       },
     },
-    //? Does not work...
+    //? Does not work....
     // instanceMethods: {
     //   validPassword: async function(password) {
     //     return await bcrypt.compare(password, this.passHash)
