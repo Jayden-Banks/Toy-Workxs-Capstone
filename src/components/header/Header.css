@@ -1,0 +1,88 @@
+#div-header {
+  position: sticky;
+  background-color: white;
+  top: 0;
+  width: 100%;
+}
+#div-header-nav {
+  display: flex;
+  padding-top: .5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+#ul-header1-nav {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex: 1;
+  align-items: center;
+}
+#ul-header2-nav {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex: 0;
+}
+#ul-header3-nav {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
+  align-items: center;
+}
+#li-hamburger-nav {
+  margin-right: .75rem;
+}
+#input-login-nav {
+  background-color: transparent;
+  border: none;
+  color: #5C36F5;
+  font-size: 1.25rem;
+  font-family: CherryBomb;
+}
+
+
+#div-banner {
+  background-color: #A792FF;
+  text-align: center;
+  box-shadow:  5px 1px 5px 2px black;
+}
+#img-toyWorkxs-banner {
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+}
+#div-hamburger {
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  background-color: white;
+  padding-top: 2rem;
+}
+.input-hamburger {
+  color: #A792FF;
+  background-color: transparent;
+  border: none;
+  padding-bottom: .75rem;
+  font-size: 1.5rem;
+}
+#hr-hamburger {
+  width: 90%;
+  background-color: #A792FF;
+  margin-bottom: 1rem;
+  height: 2px;
+  border: none;
+}
+#ul-hamburger {
+  padding-left: 20px;
+}
+#li-login-signout {
+  display: flex;
+  flex-direction: column;
+}
+#li-login-signout > button {
+  border: none;
+  text-decoration: underline;
+  color: #5C36F5;
+  padding-left: 0px;
+}

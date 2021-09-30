@@ -1,0 +1,10 @@
+.div-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#div-show-password {
+  text-align: center;
+  margin-top: .5rem;
+}

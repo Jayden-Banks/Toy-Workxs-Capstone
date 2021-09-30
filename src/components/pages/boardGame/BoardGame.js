@@ -1,5 +1,6 @@
-import React from 'react'
-
+import React, { useState } from 'react'
+import stratego from '../../../assets/product-test/stratego.jpeg'
+import "./BoardGame.css"
 /* //todo
   - Create header "Board Games"
   - Create onChange search input (this might come from another component <productSearch>)
@@ -13,9 +14,31 @@ import React from 'react'
 
 
 function BoardGame() {
+  const [currSearch, setCurrSearch] = useState('')
+
+  const handleChange = (value) => {
+    setCurrSearch(value)
+  }
+
   return (
-    <div>
-    Board Game Page
+    <div className="div-full-page">
+      <div className="div-page-title">
+        <h1 className="h1-page-title">
+          Board<br></br>Games
+        </h1>
+      <input type="text" className="input-text-field input-search" placeholder="Board Game" onChange={(e) => handleChange(e.target.value)}/>
+      </div>
+      <div className="div-all-products">
+        <div className="div-genre-group">
+        <h3 className="h3-genre-headers">Strategy Games</h3>
+        <div className="div-individual-product">
+          <div className="div-product-image" style={{ backgroundImage: `url("${stratego}")` }}></div>
+          <h4 className="h4-product-title">Stratego</h4>
+          <h4 className="h4-product-title">Price: $25.00</h4>
+          <button className="button-product-add">ADD</button>
+        </div>
+        </div>
+      </div>
     </div>
   )
 }

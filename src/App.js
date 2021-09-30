@@ -13,9 +13,9 @@ function App() {
   return (
     <div className="App">
       <Header />
-      {/* {routes} */}
-      <Cart />
-      <Footer />
+      {routes}
+      {/* <Cart /> */}
+      {/* <Footer /> */}
     </div>
   );
 }

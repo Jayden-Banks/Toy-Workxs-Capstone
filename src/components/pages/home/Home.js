@@ -1,5 +1,11 @@
-import React from 'react'
-
+import React, { useEffect, useState } from "react";
+import "./Home.css";
+import candyLand from "../../../assets/advertise/candy-land.png";
+import carasonne from "../../../assets/advertise/carasonne.jpeg";
+import pandemic from "../../../assets/advertise/pandemic.jpeg";
+import leftArrow from "../../../assets/navIcons/left-arrow.png";
+import rightArrow from "../../../assets/navIcons/right-arrow.png";
+import { Link } from "react-router-dom";
 /* //todo
   MVP
   Board Game section:
@@ -29,11 +35,64 @@ import React from 'react'
 */
 
 function Home() {
+  const boardGames = [candyLand, carasonne, pandemic];
+  const [currIteration, setCurrIteration] = useState(0);
+  const [currBoardGame, setCurrBoardGame] = useState(candyLand);
+
+  const boardGameAdRight = () => {
+    console.log(currIteration, "clicked");
+    setCurrIteration((currIteration + 1) % boardGames.length);
+  };
+  const boardGameAdLeft = () => {
+    console.log(currIteration, "clicked");
+    if (currIteration > 0) {
+      let nextIteration = (currIteration - 1) % boardGames.length;
+      setCurrIteration(nextIteration);
+    } else {
+      setCurrIteration(boardGames.length - 1);
+    }
+  };
+
+  useEffect(() => {
+    setCurrBoardGame(boardGames[currIteration]);
+  }, [boardGames, currIteration]);
+
   return (
-    <div>
-      Home Page
+    <div id="div-home">
+      <Link to="/boardGame">
+        <h2 className="h2-header">Board Game Specials</h2>
+      </Link>
+      <div className="div-boardGame-ad">
+        <div
+          className="div-boardGame-ad-image"
+          style={{ backgroundImage: `url("${currBoardGame}")` }}
+        >
+          <div id="div-input-arrows">
+            <input
+              type="image"
+              className="input-arrows"
+              src={leftArrow}
+              alt="left arrow"
+              onClick={() => boardGameAdLeft()}
+            />
+            <input
+              type="image"
+              className="input-arrows"
+              src={rightArrow}
+              alt="right arrow"
+              onClick={() => boardGameAdRight()}
+            />
+          </div>
+          <button className="button-add" onClick={() => boardGameAdRight()}>
+            ADD
+          </button>
+        </div>
+      </div>
+      <h2 className="h3-sale-header">
+        50% Off With Coupon Code "MUSTHAVE" Today Only!
+      </h2>
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;

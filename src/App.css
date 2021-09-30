@@ -1,0 +1,142 @@
+/* basic reset */
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+/* font styles */
+@font-face {
+  font-family: CherryBomb; src:url('./assets/fonts/CherryBomb-Regular.otf');
+}
+@font-face {
+  font-family: Sansation; src: url('./assets/fonts/Sansation_Regular.ttf');
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+input {
+  padding: 0;
+}
+a {
+  text-decoration: none;
+}
+
+.buttons {
+  background-color: #5C36F5;
+  font-family: CherryBomb;
+}
+
+/* This section controls most pages that have 1 main header and few options (login, account...) */
+.div-full-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* min-height: 50vh; */
+  padding-top: 20%;
+}
+.div-page-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.h1-page-title {
+  color: #a792ff;
+  font-size: 2.5rem;
+  font-family: CherryBomb;
+  font-weight: 300;
+  text-align: center;
+}
+.h3-sub-title {
+  color: #5C36F5;
+  margin-top: .50rem;
+  font-size: .75rem;
+  font-family: Sansation;
+  text-decoration: underline;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 1.5px;
+}
+
+/* styling for forms */
+.input-text-field {
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  padding-left: .5rem;
+  border: 2px black solid;
+  /* margin-right: 5rem; */
+  /* margin-left: 1rem; */
+}
+.div-form-control {
+  display: flex;
+  flex-direction: column;
+}
+.div-errors {
+  color: red;
+}
+.form-login {
+  display: flex;
+  flex-direction: column;
+}
+.div-form-control {
+  margin-bottom: 1rem;
+}
+.button-submit {
+  height: fit-content;
+  background-color: #5C36F5;
+  color: white;
+  font-size: 1.5rem;
+  border-radius: 20px;
+  font-family: Sansation;
+  font-weight: 700;
+  letter-spacing: .1rem;
+  margin-bottom: 1rem;
+  padding-left: .25rem;
+  padding-left: .50rem;
+  text-align: center;
+  width: 100px;
+  min-width: fit-content;
+  margin: auto;
+}
+
+/* search fields */
+.input-search {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+
+
+
+
+/* pseudo selectors */
+input:hover {
+  filter: brightness(125%);
+  /* filter:invert(50%) */
+}
+input:active {
+  filter: brightness(150%);
+}
+button:hover {
+  filter: brightness(150%);
+}
+button:active {
+  filter: brightness(175%);
+}
+.button-add:hover {
+  font-size: 2rem;
+}
+.h2-header:hover {
+  filter: brightness(150%);
+}
+.h2-header:active {
+  filter: brightness(175%);
+}
+.input-black:hover {
+  filter: invert(50%);
+  /* background-color: black */
+}
+.input-black:active {
+  filter: invert(50%);
+}

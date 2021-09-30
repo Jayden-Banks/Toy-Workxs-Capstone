@@ -1,5 +1,16 @@
-import React from 'react'
-
+import React from "react";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import "./Header.css";
+import cartIcon from "../../assets/navIcons/cart-icon-test.png";
+import profileIcon from "../../assets/navIcons/profile-icon.png";
+import hamburgerIcon from "../../assets/navIcons/hamburger-icon.png";
+import searchIcon from "../../assets/navIcons/search-icon.png";
+import toyWorkxsIcon from "../../assets/images/toy-workxs-icon.png";
+import exitIcon from "../../assets/navIcons/exit-icon.png";
+import toyWorkxsBanner from "../../assets/images/toy-workxs-header.png";
+import { logout } from "../pages/login/userSlice";
+import { useSelector, useDispatch } from "react-redux";
 /* //todo
   MVP
   - Create a fixed Header that is at the very top of screen
@@ -18,12 +29,153 @@ import React from 'react'
 */
 
 function Header() {
+  const user = useSelector((state) => state.user.user);
+  const { firstName } = user;
+  const dispatch = useDispatch();
+  const [menu, setMenu] = useState("true");
+  const handleClick = () => {
+    setMenu(!menu);
+  };
+  const logUserOut = () => {
+    dispatch(logout());
+  };
+
   return (
-    <div>
-      Header Page
+    <div id="div-header">
+      <div id="div-header-nav">
+        <ul id="ul-header1-nav">
+          <li id="li-hamburger-nav">
+            <input
+              type="image"
+              alt="hamburger menu"
+              className="input-black"
+              src={`${menu ? hamburgerIcon : exitIcon}`}
+              width="30px"
+              onClick={() => handleClick()}
+            />
+          </li>
+          <li id="li-login-signout">
+            {user ? (
+              <>
+              <Link to="/account">
+                <input type="button" id="input-login-nav" value={'Hi, ' + firstName + '!'} />
+              </Link>
+                <button onClick={()=> logUserOut()}>Signout</button>
+              </>
+            ) : (
+              <Link to="/login">
+                <input type="button" id="input-login-nav" value="Login" />
+              </Link>
+            )}
+          </li>
+        </ul>
+        <ul id="ul-header2-nav">
+          <li>
+            <Link to="/">
+              <input
+                type="image"
+                alt="Home icon"
+                src={toyWorkxsIcon}
+                width="50px"
+              />
+            </Link>
+          </li>
+        </ul>
+        <ul id="ul-header3-nav">
+          <li>
+            <Link to="/boardGame">
+              <input
+                type="image"
+                alt="Search icon"
+                className="input-black"
+                src={searchIcon}
+                width="30px"
+              />
+            </Link>
+          </li>
+          <li>
+            <Link to="/cart">
+              <input
+                type="image"
+                alt="Cart icon"
+                className="input-black"
+                src={cartIcon}
+                width="40px"
+              />
+            </Link>
+          </li>
+          <li>
+            <Link to={user ? "/account" : "/login"}>
+              <input
+                type="image"
+                alt="Profile icon"
+                className="input-black"
+                src={profileIcon}
+                width="30px"
+              />
+            </Link>
+          </li>
+        </ul>
+      </div>
+      <div id="div-banner">
+        <img
+          src={toyWorkxsBanner}
+          alt="Toy Workxs banner"
+          id="img-toyWorkxs-banner"
+          width="200px"
+        />
+      </div>
+
+      <div
+        id="div-hamburger"
+        style={{ display: `${menu ? "none" : "inherit"}` }}
+      >
+        <ul id="ul-hamburger">
+          <li>
+            <Link to="/">
+              <input
+                type="button"
+                className="input-hamburger input-black"
+                value="HOME"
+                onClick={() => handleClick()}
+              />
+            </Link>
+          </li>
+          <li>
+            <Link to="/boardGame">
+              <input
+                type="button"
+                className="input-hamburger"
+                value="BOARD GAMES"
+                onClick={() => handleClick()}
+              />
+            </Link>
+          </li>
+          <hr id="hr-hamburger"></hr>
+          <li>
+            <Link to="/cart">
+              <input
+                type="button"
+                className="input-hamburger"
+                value="CART"
+                onClick={() => handleClick()}
+              />
+            </Link>
+          </li>
+          <li>
+            <Link to={user ? "/account" : "/login"}>
+              <input
+                type="button"
+                className="input-hamburger"
+                value="ACCOUNT"
+                onClick={() => handleClick()}
+              />
+            </Link>
+          </li>
+        </ul>
+      </div>
     </div>
-  )
+  );
 }
 
-export default Header
-
+export default Header;

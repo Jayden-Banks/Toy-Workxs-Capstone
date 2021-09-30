@@ -1,24 +1,37 @@
 require("dotenv").config();
 const express = require("express");
-const ctrl = require("./controller");
+const cartCtrl = require("./controllers/cartCtrl")
+const orderCtrl = require("./controllers/orderCtrl")
+const productCtrl = require("./controllers/productCtrl")
+const profileCtrl = require("./controllers/profileCtrl")
+const cors = require('cors')
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 require("./db");
 
 app.use(express.json());
+app.use(cors())
 // app.use(express.static(__dirname + '' )) //? I don't understand this part... give path index.js
 
 // Endpoints
-app.post("/api/profile", ctrl.createProfile);
-app.get("/api/profile/", ctrl.getProfile);
-app.get("/api/boardgames/", ctrl.getBoardGames)
-app.get("/api/cart/:profileId", ctrl.getCart)
-app.post("/api/cart", ctrl.addToCart)
-app.put("/api/cart", ctrl.updateQuantityCart)
-app.delete("/api/cart", ctrl.deleteProductCart)
-app.delete("/api/cart/clear/:profileId", ctrl.clearCart)
-app.post("/api/order", ctrl.createOrder)
-app.post("/api/order-product", ctrl.createOrderProduct)
+// Profile endpoints
+app.post("/api/profile", profileCtrl.createProfile);
+app.get("/api/profile/", profileCtrl.getProfile);
+
+// Product endpoints
+app.get("/api/boardgames/", productCtrl.getBoardGames)
+
+// Cart endpoints
+app.get("/api/cart/:profileId", cartCtrl.getCart)
+app.post("/api/cart", cartCtrl.addToCart)
+app.put("/api/cart", cartCtrl.updateQuantityCart)
+app.delete("/api/cart", cartCtrl.deleteProductCart)
+app.delete("/api/cart/clear/:profileId", cartCtrl.clearCart)
+
+// Order endpoints
+app.post("/api/order", orderCtrl.createOrder)
+app.post("/api/order-product", orderCtrl.createOrderProduct)
 
 // listen
 app.listen(PORT, () => {
