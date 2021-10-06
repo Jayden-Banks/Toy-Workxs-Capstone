@@ -1,3 +1,4 @@
+const chalk = require("chalk");
 const models = require("../models");
 
 module.exports = {
@@ -9,14 +10,22 @@ module.exports = {
       selection = { name, genre };
     } else if (name) {
       selection = { name };
-    } else {
+    } else if (genre) {
       selection = { genre };
+    } else {
+      selection = "all";
     }
     try {
-      const boardgames = await models.Product.findAll({
-        where: selection,
-      });
-      res.status(200).send(boardgames);
+      if (selection === "all") {
+        const boardGames = await models.Product.findAll({});
+        console.log(boardGames)
+        res.status(200).send(boardGames);
+      } else {
+        const boardGames = await models.Product.findAll({
+          where: selection,
+        });
+        res.status(200).send(boardGames);
+      }
     } catch (err) {
       console.log(err);
       res.status(404).send(err);

@@ -1,18 +1,45 @@
+const chalk = require("chalk");
+const { Product, Profile } = require("../models");
 const models = require("../models");
 //? middle ware checking session for security from random post requests //? npm i express sessions (or something): cookie for the backend that creates a session so the user can't see it
 module.exports = {
   // Endpoint that gets all products in cart
-  getCart: async (req, res) => {
+  getCart: async(req, res) => {
     const { profileId } = req.params;
+    let cartNumbers
     try {
       const cart = await models.Profile_Product.findAll({
         where: { profileId },
+        order: [
+          ['productId', 'ASC'], // Sorts by product Id, this works for now
+      ],
       });
-      res.status(200).send(cart);
-    } catch (err) {
-      console.log(err);
-      res.status(404).send(err);
-    }
+      
+      cartNumbers = cart.map((product) => {
+        let productObj = {}
+        productObj.productId = product.dataValues.productId
+        productObj.quantity = product.dataValues.quantity
+        return productObj
+      }) 
+    } catch (err) {res.status(400).send('something went wrong')}
+
+      try {
+        const completeCart = await Promise.all(cartNumbers.map(async (element) => {
+          const {productId: id} = element
+          let productInfo = ''
+          productInfo = await models.Product.findOne({
+            where: {id}
+          
+          })
+          element.name = productInfo.name
+          element.price = productInfo.price
+          element.image = productInfo.image
+          return element
+        }))
+        res.status(200).send(completeCart)
+        } catch (err) {
+          res.status(400).send("bad")
+        }
   },
   // Endpoint Adds product to cart
   addToCart: async (req, res) => {
@@ -33,7 +60,7 @@ module.exports = {
   // Endpoint Cart put that updates product quantity in cart
   updateQuantityCart: async (req, res) => {
     const { profileId, productId, quantity } = req.body;
-    if (!profileId || !profileId || !quantity) {
+    if (!profileId || !productId || !quantity) {
       res.status(400).send("Missing required field")
     }
     try {
@@ -54,11 +81,12 @@ module.exports = {
   },
   // Endpoint Cart delete that adds deletes a Product from cart
   deleteProductCart: async (req, res) => {
-    const { profileId, productId } = req.query;
+    const { id, productId } = req.query;
+    console.log(id, productId)
     try {
       await models.Profile_Product.destroy({
         where: {
-          profileId,
+          profileId: id,
           productId,
         },
       });

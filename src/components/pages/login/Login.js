@@ -31,6 +31,7 @@ function Login() {
   const dispatch = useDispatch()
   const [showPass, setShowPass] = useState("password");
   const [submitError, setSubmitError] = useState('')
+  const [submitSuccess, setSubmitSuccess] = useState(false)
   const validationSchema = Yup.object({
     email: Yup.string().email("Invalid email format").required("Required"),
     password: Yup.string().required("Required"),
@@ -46,11 +47,15 @@ function Login() {
       (async() => {
         try {
           const res = await axios.get('api/profile/', {params: { email, password}})
-          setSubmitError(`Welcome back ${res.data.firstName}`)
+          setSubmitError(false)
           dispatch(login(res.data))
-          history.goBack()          
-          console.log("Now redirecting to account page")
-          
+          setSubmitSuccess(`Successful Login ${res.data.firstName}, redirecting...`)
+          localStorage.setItem('user', JSON.stringify(res.data))
+          setTimeout(function() {
+            history.goBack()
+            // history.push('/account')
+            // history()           
+          }, 1500)          
         } catch (err) {
           if(err.response.data === 'User not found') {
             setSubmitError('Incorrect email')
@@ -84,7 +89,8 @@ function Login() {
         </Link>
       </div>
       <div className="div-form">
-        <div className="div-error-submit">{submitError}</div>
+        <h3 className="h3-error-submit">{submitError}</h3>
+        <h3 className="h3-success-submit">{submitSuccess}</h3>
         <form className="form-login" onSubmit={formik.handleSubmit}>
           <div className="div-form-control">
             <label htmlFor="email">Email</label>

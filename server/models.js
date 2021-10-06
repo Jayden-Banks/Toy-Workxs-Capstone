@@ -73,20 +73,20 @@ module.exports = {
     notEmpty: true,
   },
 },
-      firstName: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        validate: {
-          notEmpty: true,
-        },
-      },
-      lastName: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        validate: {
-          notEmpty: true,
-        },
-      },
+      // firstName: {
+      //   type: Sequelize.STRING,
+      //   allowNull: false,
+      //   validate: {
+      //     notEmpty: true,
+      //   },
+      // },
+      // lastName: {
+      //   type: Sequelize.STRING,
+      //   allowNull: false,
+      //   validate: {
+      //     notEmpty: true,
+      //   },
+      // },
       address: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -94,20 +94,27 @@ module.exports = {
           notEmpty: true,
         },
       },
-      zipcode:  {
-  type: Sequelize.INTEGER,
-  allowNull: false,
-  validate: {
-    notEmpty: true,
-  },
-},
-      state: {
-        type: Sequelize.STRING,
+      payment: {
+        type: Sequelize.DECIMAL, 
         allowNull: false,
         validate: {
           notEmpty: true,
         },
       },
+//       zipcode:  {
+//   type: Sequelize.INTEGER,
+//   allowNull: false,
+//   validate: {
+//     notEmpty: true,
+//   },
+// },
+      // state: {
+      //   type: Sequelize.STRING,
+      //   allowNull: false,
+      //   validate: {
+      //     notEmpty: true,
+      //   },
+      // },
     },
     {
       //! options
@@ -227,6 +234,9 @@ module.exports = {
       updatedAt: false,
       timestamps: false,
       createdAt: false,
-    }
+      
+    },
+    
   ),
-};
+}
+  // Association

@@ -1,4 +1,5 @@
 const models = require("../models");
+const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
 
 module.exports = {
   // Endpoint Order posts a new order with profileId, address, payment.
@@ -10,9 +11,11 @@ module.exports = {
         address,
         payment,
       };
+      console.log(order, "order here")
       const post = await models.Order.create(order);
       res.status(200).send(post);
     } catch (err) {
+      console.log(err, "err")
       res.status(500).send("Failed to create order");
     }
   },
@@ -33,4 +36,23 @@ module.exports = {
       res.status(500).send(err);
     }
   },
+
+  // Stripe Checkout Session endpoint
+  createCheckoutSession: async (req, res) => {
+    let { total } = req.body
+    console.log(("total", total))
+    total = Math.round(total * 100) / 100
+    console.log(total, 'rounded')
+    total *= 100
+    console.log(total, "price increased")
+    
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: total,
+      currency: "usd"
+    });
+    res.send({
+      clientSecret: paymentIntent.client_secret
+    });
+  }
+
 };

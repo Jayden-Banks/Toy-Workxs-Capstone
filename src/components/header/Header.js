@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import "./Header.css";
@@ -9,8 +9,10 @@ import searchIcon from "../../assets/navIcons/search-icon.png";
 import toyWorkxsIcon from "../../assets/images/toy-workxs-icon.png";
 import exitIcon from "../../assets/navIcons/exit-icon.png";
 import toyWorkxsBanner from "../../assets/images/toy-workxs-header.png";
-import { logout } from "../pages/login/userSlice";
+import { login, logout } from "../pages/login/userSlice";
 import { useSelector, useDispatch } from "react-redux";
+import { itemAdded } from "../pages/cart/cartSlice";
+import axios from "axios";
 /* //todo
   MVP
   - Create a fixed Header that is at the very top of screen
@@ -39,6 +41,26 @@ function Header() {
   const logUserOut = () => {
     dispatch(logout());
   };
+  useEffect(() => {
+    if (localStorage.getItem("user")) {
+      const user = JSON.parse(localStorage.getItem("user"));
+      dispatch(login(user));
+      const getCart = async () => {
+        if (!user) {
+          return "No user";
+        }
+        try {
+          const res = await axios.get(`/api/cart/${user.id}`);
+          res.data.map((element) => {
+            dispatch(itemAdded(element.productId));
+          });
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      getCart();
+    }
+  }, []);
 
   return (
     <div id="div-header">
@@ -57,10 +79,12 @@ function Header() {
           <li id="li-login-signout">
             {user ? (
               <>
-              <Link to="/account">
-                <input type="button" id="input-login-nav" value={'Hi, ' + firstName + '!'} />
-              </Link>
-                <button onClick={()=> logUserOut()}>Signout</button>
+                <Link to="/account">
+                  <input type="button" id="input-login-nav" value={firstName} />
+                </Link>
+                <button id="button-sign-out" onClick={() => logUserOut()}>
+                  Signout
+                </button>
               </>
             ) : (
               <Link to="/login">

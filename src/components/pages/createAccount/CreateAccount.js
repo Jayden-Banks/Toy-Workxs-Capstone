@@ -1,7 +1,11 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { Redirect } from "react-router";
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { login } from "../login/userSlice";
 
 /* // todo
   MVP
@@ -16,11 +20,18 @@ import { useFormik } from "formik";
 */
 
 function CreateAccount() {
+  const user = useSelector((state) => state.user.user)
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const [submitError, setSubmitError] = useState("");
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+
   const validationSchema = Yup.object({
     firstName: Yup.string().required("Required"),
     lastName: Yup.string().required("Required"),
     email: Yup.string().email("Invalid email format").required("Required"),
-    password: Yup.string().required("Required"),
+    password: Yup.string().required("Required").min(8, "password length"),
     confirmPassword: Yup.string()
       .required("Required")
       .oneOf([Yup.ref("password"), null], "Password must match"),
@@ -35,15 +46,47 @@ function CreateAccount() {
       confirmPassword: "",
     },
     onSubmit: (values, onSubmitProps) => {
-      console.log("Form data", values);
-      const { firstName, lastName, email, password, confirmPassword } = values;
-      console.log(firstName, lastName, email, password, confirmPassword);
-      // todo Axios post here for creating a profile and we done
-      onSubmitProps.setSubmitting(false);
-      onSubmitProps.resetForm();
+      const { firstName, lastName, email, password: passHash } = values;
+      
+      (async () => {
+        const body = {
+          firstName,
+          lastName,
+          email,
+          passHash,
+        };
+        try {
+          const res = await axios.post("api/profile", body);
+          setSubmitError(false);
+          setSubmitSuccess("Account Successfully Created, redirecting...");
+          dispatch(login(res.data));
+          setTimeout(function () {
+            history.push("/account");
+          }, 2000);
+        } catch (err) {
+          console.log(err.response.data);
+          switch (err.response.data) {
+            case "Validation len on passHash failed":
+              setSubmitError("Password must be 8 or more characters");
+              break;
+            case "Email address already in use!":
+              setSubmitError("Email already in use");
+              break;
+            default:
+              setSubmitError("Something went wrong");
+              break;
+          }
+        }
+      })();
     },
     validationSchema,
   });
+  useEffect(() => {
+    if(user ) {
+      console.log('yes')
+      history.push("/account")
+    }
+  })
 
   return (
     <div className="div-full-page">
@@ -56,6 +99,8 @@ function CreateAccount() {
         </Link>
       </div>
       <div className="div-form">
+        <h3 className="h3-error-submit">{submitError}</h3>
+        <h3 className="h3-success-submit">{submitSuccess}</h3>
         <form className="form-login" onSubmit={formik.handleSubmit}>
           <div className="div-form-control">
             <label htmlFor="firstName">First Name</label>

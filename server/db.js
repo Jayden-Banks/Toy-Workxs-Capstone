@@ -1,3 +1,4 @@
+
 const Sequelize = require("sequelize");
 // Connection
 const sequelize = new Sequelize(process.env.CONNECTION_STRING, {
@@ -22,7 +23,7 @@ sequelize
   .catch((err) => {
     console.error("Unable to connect to the database:", err);
   })
-
-module.exports = {
-  sequelize: sequelize
-}
+  
+  module.exports = {
+    sequelize: sequelize
+  }

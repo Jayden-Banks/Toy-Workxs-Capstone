@@ -13,6 +13,7 @@ export const login = userLoggingIn => {
 }
 
 export const logout = () => {
+  localStorage.setItem('user', JSON.stringify(''))
   return {
     type: 'user/logout',
     payload: ''

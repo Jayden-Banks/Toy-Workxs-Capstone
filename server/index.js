@@ -26,12 +26,15 @@ app.get("/api/boardgames/", productCtrl.getBoardGames)
 app.get("/api/cart/:profileId", cartCtrl.getCart)
 app.post("/api/cart", cartCtrl.addToCart)
 app.put("/api/cart", cartCtrl.updateQuantityCart)
-app.delete("/api/cart", cartCtrl.deleteProductCart)
+app.delete("/api/cart/", cartCtrl.deleteProductCart)
 app.delete("/api/cart/clear/:profileId", cartCtrl.clearCart)
 
 // Order endpoints
 app.post("/api/order", orderCtrl.createOrder)
 app.post("/api/order-product", orderCtrl.createOrderProduct)
+
+// Stripe
+app.post('/create-payment-intent', orderCtrl.createCheckoutSession)
 
 // listen
 app.listen(PORT, () => {

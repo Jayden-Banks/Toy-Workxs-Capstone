@@ -1,6 +1,6 @@
 // State
 const initialState = {
-  cart: ''
+  cart: []
 }
 
 // Action Creator = a function that holds an action
@@ -11,6 +11,17 @@ export const itemAdded = item => {
     payload: item
   }
 }
+export const itemRemoved = item => {
+  // The object below is called an action
+  return {
+    type: 'cart/itemRemoved',
+    payload: item
+  }
+}
+
+
+
+
 
 
 // Reducer
@@ -18,7 +29,15 @@ export default function cartSlice(state = initialState, action) {
   switch (action.type) {
     case 'cart/itemAdded': {
       return {
-        item: action.payload
+        cart: [...state.cart, action.payload]
+      }
+    }
+    case 'cart/itemRemoved': {
+      const index = state.cart.indexOf(action.payload)
+      const newCart = [...state.cart]
+      newCart.splice(index, 1)
+      return {
+        cart: newCart
       }
     }
     default:

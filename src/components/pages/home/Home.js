@@ -6,6 +6,7 @@ import pandemic from "../../../assets/advertise/pandemic.jpeg";
 import leftArrow from "../../../assets/navIcons/left-arrow.png";
 import rightArrow from "../../../assets/navIcons/right-arrow.png";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router";
 /* //todo
   MVP
   Board Game section:
@@ -35,6 +36,7 @@ import { Link } from "react-router-dom";
 */
 
 function Home() {
+  const history = useHistory()
   const boardGames = [candyLand, carasonne, pandemic];
   const [currIteration, setCurrIteration] = useState(0);
   const [currBoardGame, setCurrBoardGame] = useState(candyLand);
@@ -52,6 +54,10 @@ function Home() {
       setCurrIteration(boardGames.length - 1);
     }
   };
+
+  const handleClick = () => {
+    history.push('/boardGame')
+  }
 
   useEffect(() => {
     setCurrBoardGame(boardGames[currIteration]);
@@ -83,9 +89,7 @@ function Home() {
               onClick={() => boardGameAdRight()}
             />
           </div>
-          <button className="button-add" onClick={() => boardGameAdRight()}>
-            ADD
-          </button>
+          <button className="button-add" onClick={() => handleClick()}>Specials</button>
         </div>
       </div>
       <h2 className="h3-sale-header">

@@ -40,6 +40,8 @@
   color: #5C36F5;
   font-size: 1.25rem;
   font-family: CherryBomb;
+  max-width: 125px;
+
 }
 
 
@@ -85,4 +87,11 @@
   text-decoration: underline;
   color: #5C36F5;
   padding-left: 0px;
+}
+#button-sign-out {
+  /* margin-top: 3px; */
+  border: none;
+  background-color: transparent;
+  text-decoration: none;
+  overflow-x: hidden;
 }
