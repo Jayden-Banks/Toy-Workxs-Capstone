@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import '../cart/Cart.css'
+import "../cart/Cart.css";
 import CartItems from "./CartItems";
 import { useHistory } from "react-router";
 // import { useDispatch } from 'react-redux'
@@ -22,40 +22,56 @@ import { useHistory } from "react-router";
 */
 
 function Cart() {
-  const history = useHistory()
-  const [totalPrice, setTotalPrice] = useState(0)
-  const [errorDisplay, setErrorDisplay] = useState('')
+  const history = useHistory();
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [errorDisplay, setErrorDisplay] = useState("");
 
   const notificationSetter = (value) => {
-    setErrorDisplay(value)
-  }
+    setErrorDisplay(value);
+  };
 
   const handleClick = () => {
-    history.push({
-      pathname: '/shipping',
-      totalPrice
-    })
-  }
+    if (totalPrice === 0) {
+      
+      setErrorDisplay("Nothing in cart");
+      setTimeout(function() {
+        setErrorDisplay('')
+      }, 1500)
+    } else {
+      history.push({
+        pathname: "/shipping",
+        totalPrice,
+      });
+    }
+  };
 
   return (
     <div className="div-full-page">
       <div className="div-page-title">
         <h1 className="h1-page-title">Shopping Cart</h1>
         <div className="div-cart-subheader">
-        <h3 className="h3-cart-sub-title">Total: ${totalPrice}.00</h3>
-        <button className="button-cart" onClick={() => handleClick()}>Check Out</button>
+          <h3 className="h3-cart-sub-title">Total: ${totalPrice}.00</h3>
+          <button className="button-cart" onClick={() => handleClick()}>
+            Check Out
+          </button>
         </div>
       </div>
       <div id="div-cart-body">
         <div id="div-cart-items">
           {errorDisplay}
-          <CartItems notificationSetter={notificationSetter} setTotalPrice={setTotalPrice} totalPrice={totalPrice}/>
+          <CartItems
+            notificationSetter={notificationSetter}
+            setTotalPrice={setTotalPrice}
+            totalPrice={totalPrice}
+          />
         </div>
-      <hr className="hr-cart-total" />
-      <div className="div-cart-subheader" id="div-cart-subheader-bottom">
-        <h3 className="h3-cart-sub-title">Total: ${totalPrice}.00</h3>
-        <button className="button-cart" onClick={() => handleClick()}>Check Out</button>
-      </div>
+        <hr className="hr-cart-total" />
+        <div className="div-cart-subheader" id="div-cart-subheader-bottom">
+          <h3 className="h3-cart-sub-title">Total: ${totalPrice}.00</h3>
+          <button className="button-cart" onClick={() => handleClick()}>
+            Check Out
+          </button>
+        </div>
       </div>
     </div>
   );

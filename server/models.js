@@ -178,13 +178,13 @@ module.exports = {
     notEmpty: true,
   },
 },
-      quantity:  {
-  type: Sequelize.INTEGER,
-  allowNull: false,
-  validate: {
-    notEmpty: true,
-  },
-},
+//       quantity:  {
+//   type: Sequelize.INTEGER,
+//   allowNull: false,
+//   validate: {
+//     notEmpty: true,
+//   },
+// },
     },
     {
       //! options
@@ -221,6 +221,13 @@ module.exports = {
         },
       },
       image: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: true,
+        },
+      },
+      category: {
         type: Sequelize.STRING,
         allowNull: false,
         validate: {

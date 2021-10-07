@@ -11,48 +11,67 @@ module.exports = {
         address,
         payment,
       };
-      console.log(order, "order here")
+      console.log(order, "order here");
       const post = await models.Order.create(order);
       res.status(200).send(post);
     } catch (err) {
-      console.log(err, "err")
+      console.log(err, "err");
       res.status(500).send("Failed to create order");
     }
   },
   // Endpoint creates a post that adds current cart with orderId to Order_Product
   createOrderProduct: async (req, res) => {
+    console.log(req.body);
     const { cart, orderId } = req.body;
     try {
-      cart.map(async (element) => {
-        element.orderId = orderId;
+      cart.forEach(async (element) => {
+        const body = {
+          orderId,
+          productId: element,
+        };
         try {
-          await models.Order_Product.create(element);
+          console.log(body)
+          const res = await models.Order_Product.create(body);
+          console.log(res, 'res')
         } catch (err) {
           console.log(err);
+          res.status(400).send(err);
         }
       });
-      res.status(200).send("Success");
+      res.status(200).send("Success!");
     } catch (err) {
-      res.status(500).send(err);
+      console.log(err);
+      res.status(400).send(err);
     }
+    //   cart.map(async (element) => {
+    //     element.orderId = orderId;
+    //     try {
+    //       await models.Order_Product.create(element);
+    //     } catch (err) {
+    //       console.log(err);
+    //     }
+    //   });
+    //   res.status(200).send("Success");
+    // } catch (err) {
+    //   res.status(500).send(err);
+    // }
   },
 
   // Stripe Checkout Session endpoint
   createCheckoutSession: async (req, res) => {
-    let { total } = req.body
-    console.log(("total", total))
-    total = Math.round(total * 100) / 100
-    console.log(total, 'rounded')
-    total *= 100
-    console.log(total, "price increased")
-    
+    let { total } = req.body;
+    console.log(("total", total));
+    total = Math.round(total * 100) / 100;
+    console.log(total, "rounded");
+    total *= 100;
+    console.log(total, "price increased");
+
     const paymentIntent = await stripe.paymentIntents.create({
       amount: total,
-      currency: "usd"
+      currency: "usd",
     });
     res.send({
-      clientSecret: paymentIntent.client_secret
+      clientSecret: paymentIntent.client_secret,
     });
-  }
-
+  },
 };

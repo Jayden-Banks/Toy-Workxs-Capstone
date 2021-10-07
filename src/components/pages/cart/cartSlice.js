@@ -19,7 +19,12 @@ export const itemRemoved = item => {
   }
 }
 
-
+export const clearCart = ()=> {
+  // The object below is called an action
+  return {
+    type: 'cart/clearCart',
+  }
+}
 
 
 
@@ -38,6 +43,11 @@ export default function cartSlice(state = initialState, action) {
       newCart.splice(index, 1)
       return {
         cart: newCart
+      }
+    }
+    case 'cart/clearCart': {
+      return {
+        cart: []
       }
     }
     default:

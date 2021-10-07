@@ -36,8 +36,18 @@ import { useHistory } from "react-router";
 */
 
 function Home() {
-  const history = useHistory()
-  const boardGames = [candyLand, carasonne, pandemic];
+  const history = useHistory();
+  const boardGames = [
+    "https://toy-workxs.s3.us-west-1.amazonaws.com/product-images-toyworkxs/ad-special/Photosynthesis.jpeg",
+    "https://toy-workxs.s3.us-west-1.amazonaws.com/product-images-toyworkxs/ad-special/coup.jpg",
+    "https://toy-workxs.s3.us-west-1.amazonaws.com/product-images-toyworkxs/ad-special/forbidden-island.jpeg",
+    "https://toy-workxs.s3.us-west-1.amazonaws.com/product-images-toyworkxs/ad-special/sharkbite.jpg",
+    "https://toy-workxs.s3.us-west-1.amazonaws.com/product-images-toyworkxs/ad-special/codenames.jpeg",
+    "https://toy-workxs.s3.us-west-1.amazonaws.com/product-images-toyworkxs/ad-special/5-second-rule.jpeg",
+    "https://toy-workxs.s3.us-west-1.amazonaws.com/product-images-toyworkxs/ad-special/blokus.jpg",
+    "https://toy-workxs.s3.us-west-1.amazonaws.com/product-images-toyworkxs/ad-special/dixit.jpeg",
+    "https://toy-workxs.s3.us-west-1.amazonaws.com/product-images-toyworkxs/ad-special/qwirkle.jpg"
+  ];
   const [currIteration, setCurrIteration] = useState(0);
   const [currBoardGame, setCurrBoardGame] = useState(candyLand);
 
@@ -56,8 +66,8 @@ function Home() {
   };
 
   const handleClick = () => {
-    history.push('/boardGame')
-  }
+    history.push("/boardGame");
+  };
 
   useEffect(() => {
     setCurrBoardGame(boardGames[currIteration]);
@@ -71,7 +81,7 @@ function Home() {
       <div className="div-boardGame-ad">
         <div
           className="div-boardGame-ad-image"
-          style={{ backgroundImage: `url("${currBoardGame}")` }}
+          style={{ backgroundImage: `url(${currBoardGame})` }}
         >
           <div id="div-input-arrows">
             <input
@@ -89,7 +99,9 @@ function Home() {
               onClick={() => boardGameAdRight()}
             />
           </div>
-          <button className="button-add" onClick={() => handleClick()}>Specials</button>
+          <button className="button-add" onClick={() => handleClick()}>
+            Specials
+          </button>
         </div>
       </div>
       <h2 className="h3-sale-header">

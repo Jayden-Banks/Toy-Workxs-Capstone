@@ -7,9 +7,9 @@ import {
 } from "@stripe/react-stripe-js";
 import axios from "axios";
 import userSlice from "../../login/userSlice";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
-
+import { clearCart } from "../../cart/cartSlice";
 
 
 
@@ -26,6 +26,9 @@ export default function CheckoutForm(props) {
   const [clientSecret, setClientSecret] = useState('');
   const stripe = useStripe();
   const elements = useElements();
+  const cart = useSelector((state) => state.cart.cart)
+  const dispatch = useDispatch()
+
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
     window
@@ -71,13 +74,34 @@ export default function CheckoutForm(props) {
       const res = await axios.post('/api/order', body)
       console.log(res)
       const {id, address, payment} = res.data
+      console.log('Cart', cart)
       console.log('success')
+      const orderInfo = {
+        cart, //need the cart
+        orderId : id,
+      }
+      try {
+        const orderProductRes = await axios.post('/api/order-product', orderInfo)
+        console.log(orderProductRes)
+      } catch(err) {
+        console.log(err)
+      } finally {
+        try {
+          const clearCartRes = await axios.delete(`/api/cart/clear/${user.id}`)
+          console.log(clearCartRes, "success")
+        } catch (err) {
+          console.log(err)
+        }
+
+
+
       history.push({
         pathname: '/review',
         id,
         address,
         payment
       })
+      }
     } catch (err) {
 
       console.log(err)

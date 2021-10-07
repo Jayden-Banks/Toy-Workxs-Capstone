@@ -1,6 +1,6 @@
 const chalk = require("chalk");
+const Sequelize = require("sequelize")
 const models = require("../models");
-
 module.exports = {
   // Gets all board games from db based off of name or genre (doesn't accept price)
   getBoardGames: async (req, res) => {
@@ -22,7 +22,9 @@ module.exports = {
         res.status(200).send(boardGames);
       } else {
         const boardGames = await models.Product.findAll({
-          where: selection,
+          where: {name: {
+            [Sequelize.Op.iLike] : name + '%'
+          }}
         });
         res.status(200).send(boardGames);
       }

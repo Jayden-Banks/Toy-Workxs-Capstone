@@ -74,13 +74,13 @@ function Payment(props) {
   
   return (
     <div className="div-full-page">
-      <div className="div-page-title">
+      <div className="div-page-title" id="div-payment-title">
         <h1 className="h1-page-title">Payment Info</h1>
     <div id="div-order-summary">
-      <h4 className="h4-order">Order: ${totalPrice}</h4>
-      <h4 className="h4-order">Tax: ${taxCalc()}</h4>
-      <h4 className="h4-order" id="h4-order-shipping">Shipping: $5.00</h4>
-      <h4 className="h4-order">Total: ${totalPrice + taxCalc() + 5.00}</h4>
+      <h4 className="h4-order">Order: <span className="span-align-right">${totalPrice}</span></h4>
+      <h4 className="h4-order">Tax: <span className="span-align-right">${taxCalc()}</span></h4>
+      <h4 className="h4-order" id="h4-order-shipping">Shipping: <span className="span-align-right">$5.00</span></h4>
+      <h4 className="h4-order">Total: <span className="span-align-right">${totalPrice + taxCalc() + 5.00}</span></h4>
     </div>
       </div>
 

@@ -1,0 +1,26 @@
+#div-order-complete-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: 1rem;
+
+}
+#div-order-complete-info > * {
+  margin-top: 1rem;
+}
+#h2-order-number {
+  color: #a792ff ;
+}
+.span-order-number {
+  color: #5c36f5;
+  font-weight: 500;
+}
+.h3-address-payment-summary {
+  color: #a792ff;
+  font-weight: 600;
+  max-width: 60%;
+}
+#button-order-complete {
+  font-size: 1rem;
+}

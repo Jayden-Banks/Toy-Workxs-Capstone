@@ -7,7 +7,7 @@ import { itemAdded, itemRemoved } from "../cart/cartSlice";
 
 
 
-function GenreDisplay() {
+function GenreDisplay({currSearch}) {
   const [allProducts, setAllProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const user = useSelector((state) => state.user.user);
@@ -56,6 +56,21 @@ function GenreDisplay() {
     }
   };
 
+  const callSearchProducts = async () => {
+    try {
+      const res = await axios.get("/api/boardgames/", { params: {name: currSearch}});
+      await setAllProducts(res.data);
+      setLoading(true);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+
+
+
+
+
   // Sorts full list of products by genre into an obj with genre keys of product arrays
   const GenreSort = () => {
     const copy = [...allProducts];
@@ -97,10 +112,10 @@ function GenreDisplay() {
         <div className="div-individual-product" key={index}>
           <div
             className="div-product-image"
-            style={{ backgroundImage: `url(${strategoImage})` }}
+            style={{ backgroundImage: `url(${image})` }}
           ></div>
-          <h4 className="h4-product-title">{name}</h4>
-          <h4 className="h4-product-title">Price: ${price}</h4>
+          <h4 className="h4-product-title h4-product-title-space">{name}</h4>
+          <h4 className="h4-product-title h4-product-price"><span style={{textDecoration : "underline"} }>Price</span> <br></br> ${price}</h4>
           {cart.includes(id) ?  <button className="button-product-add" onClick={() => handleRemoveClick(element)}>Remove</button> : <button className="button-product-add" onClick={() => handleAddClick(element)}>ADD</button>}
         </div>
       );
@@ -109,9 +124,13 @@ function GenreDisplay() {
   };
 
   useEffect(() => {
-    callProducts();
-  }, []);
+    if(currSearch) {
+      callSearchProducts()
+    } else {
+      callProducts();
+    }
+  }, [currSearch]);
 
-  return <div>{loading ? <GenreSort /> : <h2>Loading</h2>}</div>;
+  return <div>{loading ? <GenreSort /> : <h2 id="h2-loading-products">Loading</h2>}</div>;
 }
 export default GenreDisplay;

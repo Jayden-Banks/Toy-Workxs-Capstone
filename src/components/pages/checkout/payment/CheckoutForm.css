@@ -134,3 +134,30 @@
     width: 80vw;
   }
 } */
+#div-order-summary {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  /* text-align: center; */
+  width: 50%;
+}
+.span-align-right {
+  margin-left: auto;
+}
+.h4-order {
+  display: flex;
+  margin-top: .25rem;
+  margin-bottom: .25rem;
+  font-size: 1rem;
+  font-weight: 500;
+  /* justify-content: flex-end; */
+}
+#div-payment-title {
+  margin-bottom: .5rem;
+  
+}
+#h4-order-shipping {
+  margin-bottom: 1rem;
+  padding-bottom: .5rem;
+  border-bottom: 1px solid black;
+}

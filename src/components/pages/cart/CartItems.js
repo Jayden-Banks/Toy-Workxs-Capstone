@@ -5,6 +5,7 @@ import strategoImage from '../../../assets/product-test/stratego.jpeg'
 import plus from '../../../assets/navIcons/plus.png'
 import minus from '../../../assets/navIcons/minus.png'
 import { BackgroundColor } from 'chalk';
+import { itemRemoved } from './cartSlice';
 
 
 
@@ -42,6 +43,7 @@ function CartItems({notificationSetter, setTotalPrice, totalPrice}) {
       const res = await axios.delete("/api/cart/", {params: { id, productId}} )
       console.log(res)
       notificationSetter(res.data)
+      dispatch(itemRemoved(productId))
       setTimeout(function() {
         notificationSetter('')
       }, 1500)
@@ -60,6 +62,12 @@ function CartItems({notificationSetter, setTotalPrice, totalPrice}) {
       const res = await axios.get(`/api/cart/${id}`)      
       formatCart(res.data)
     } catch (err) {
+      try {
+        const res = await axios.delete(`/api/cart/clear/${user.id}`)
+        console.log(res)
+      } catch (err) {
+        console.log(err)
+      }
       console.log(err)
     }
   }
@@ -72,7 +80,7 @@ function CartItems({notificationSetter, setTotalPrice, totalPrice}) {
       tempTotalPrice += parseFloat(price) * quantity
       return (
         <div className="div-single-cart-item" key={index}>
-        <div className="div-image-cart-item div-product-image" style={{ backgroundImage: `url(${strategoImage})` }}></div>
+        <div className="div-image-cart-item div-product-image" style={{ backgroundImage: `url(${image})` }}></div>
         <div className="div-text-cart-item">
           <h3 className="h3-text-cart-item">{name}</h3>
           <h3 className="h3-text-cart-item">Quantity: {quantity}</h3>
