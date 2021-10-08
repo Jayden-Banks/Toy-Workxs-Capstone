@@ -21,7 +21,7 @@ function BoardGame() {
   const cart = useSelector((state) => state.cart)
   // console.log(cart)
 
-
+  console.log(cart, 'CART BOARD GAME')
 
   const handleChange = (value) => {
     setCurrSearch(value);
