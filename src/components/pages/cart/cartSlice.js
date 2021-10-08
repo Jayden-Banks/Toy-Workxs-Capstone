@@ -25,6 +25,13 @@ export const clearCart = ()=> {
     type: 'cart/clearCart',
   }
 }
+export const allCart = arrItems=> {
+  // The object below is called an action
+  return {
+    type: 'cart/allCart',
+    payload: arrItems
+  }
+}
 
 
 
@@ -48,6 +55,11 @@ export default function cartSlice(state = initialState, action) {
     case 'cart/clearCart': {
       return {
         cart: []
+      }
+    }
+    case 'cart/allCart': {
+      return {
+        cart: action.payload
       }
     }
     default:

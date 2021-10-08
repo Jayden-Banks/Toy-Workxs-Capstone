@@ -1,6 +1,8 @@
 const chalk = require("chalk");
 const { Product, Profile } = require("../models");
 const models = require("../models");
+const { QueryTypes } = require("sequelize");
+const { sequelize } = require("../db");
 //? middle ware checking session for security from random post requests //? npm i express sessions (or something): cookie for the backend that creates a session so the user can't see it
 module.exports = {
   // Endpoint that gets all products in cart
@@ -109,4 +111,14 @@ module.exports = {
       res.status(500).send(err);
     }
   },
+  getProductsInCart: async(req, res) => {
+    const { profileId } = req.params
+    try {
+      const cart = await sequelize.query(`select "productId" from "Order" where "profileId" = ${profileId}`)
+      res.status(200).send(cart);
+
+    } catch (err) {
+      res.status(400).send('failure')
+    }
+  }
 };

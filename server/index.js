@@ -27,6 +27,7 @@ app.get("/api/boardgames/", productCtrl.getBoardGames)
 
 // Cart endpoints
 app.get("/api/cart/:profileId", cartCtrl.getCart)
+app.get("/api/cart/products/:profileId", cartCtrl.getProductsInCart)
 app.post("/api/cart", cartCtrl.addToCart)
 app.put("/api/cart", cartCtrl.updateQuantityCart)
 app.delete("/api/cart/", cartCtrl.deleteProductCart)
