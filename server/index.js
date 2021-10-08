@@ -5,6 +5,7 @@ const orderCtrl = require("./controllers/orderCtrl")
 const productCtrl = require("./controllers/productCtrl")
 const profileCtrl = require("./controllers/profileCtrl")
 const cors = require('cors')
+const path = require('path')
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -13,6 +14,7 @@ require("./db");
 app.use(express.json());
 app.use(cors())
 // app.use(express.static(__dirname + '' )) //? I don't understand this part... give path index.js
+app.use(express.static(path.resolve(__dirname, '../client/build')))
 
 // Endpoints
 // Profile endpoints
