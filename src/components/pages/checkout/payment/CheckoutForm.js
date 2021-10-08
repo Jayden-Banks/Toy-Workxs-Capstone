@@ -86,6 +86,7 @@ export default function CheckoutForm(props) {
       } catch(err) {
         console.log(err)
       } finally {
+        // dispatch(clearCart())
         try {
           const clearCartRes = await axios.delete(`/api/cart/clear/${user.id}`)
           console.log(clearCartRes, "success")

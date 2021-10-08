@@ -71,11 +71,13 @@ function Shipping(props) {
   useEffect(() => {
     if(addressInfo) {
       const totalPrice = props.location.totalPrice
+      const discount = props.location.discount
       setTimeout(function () {
         history.push({
           pathname: '/payment',
           addressInfo,
-          totalPrice
+          totalPrice,
+          discount 
         })
       }, 1500)
       console.log(addressInfo)

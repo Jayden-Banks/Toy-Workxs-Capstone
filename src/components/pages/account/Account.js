@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router";
@@ -25,6 +26,17 @@ function Account() {
     dispatch(logout());
   };
 
+  const orderHistory = async() => {
+    try {
+      const res = await axios.get(`/api/order/${user.id}`)
+      console.log(res.data[0])
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+
+
   return (
     <div className="div-full-page">
       <div className="div-page-title">
@@ -35,6 +47,7 @@ function Account() {
         )}
       </div>
       <div className="div-account-options">
+        <h3 className="h3-sub-title" onClick={() => orderHistory()}>Order History</h3>
         <h3 className="h3-sub-title" onClick={() => signout()}>
           Signout
         </h3>

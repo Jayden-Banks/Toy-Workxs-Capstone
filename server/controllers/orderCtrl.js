@@ -1,3 +1,5 @@
+const { QueryTypes } = require("sequelize");
+const { sequelize } = require("../db");
 const models = require("../models");
 const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
 
@@ -56,7 +58,29 @@ module.exports = {
     //   res.status(500).send(err);
     // }
   },
+  getOrders: async (req, res) => {
+    const userId = +req.params.id
+    console.log(userId)
+    console.log(typeof(userId))
+    try {
+      // const orders = await models.Order.findAll({
+      //   where: {profileId: userId }
+      // })
+      // console.log(orders)
+      const orders = await sequelize.query(`select id, address, payment from "Order" where "profileId" = ${userId}`)
+      res.status(200).send(orders)
+      // console.log(orders)
+      // const test = await sequelize.query(`Select * from "Order_Product" where "orderId" = ${userId}`, {type: QueryTypes.SELECT })
+      // console.log(test)
 
+
+
+    } catch (err) {
+      console.log(err)
+      res.status(400).send("failed")
+    }
+    
+  },
   // Stripe Checkout Session endpoint
   createCheckoutSession: async (req, res) => {
     let { total } = req.body;

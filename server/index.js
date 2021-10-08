@@ -32,6 +32,7 @@ app.delete("/api/cart/clear/:profileId", cartCtrl.clearCart)
 // Order endpoints
 app.post("/api/order", orderCtrl.createOrder)
 app.post("/api/order-product", orderCtrl.createOrderProduct)
+app.get("/api/order/:id", orderCtrl.getOrders)
 
 // Stripe
 app.post('/create-payment-intent', orderCtrl.createCheckoutSession)

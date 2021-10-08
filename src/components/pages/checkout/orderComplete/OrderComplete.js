@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./OrderComplete.css";
 import { useHistory } from "react-router";
 /* // todo
@@ -22,6 +22,7 @@ function OrderComplete(props) {
   const handleClick = () => {
     history.push('/')
   }
+
 
 
   return (

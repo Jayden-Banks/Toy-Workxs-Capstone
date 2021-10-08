@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import "./Login.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { login } from './userSlice'
 import { useSelector, useDispatch } from 'react-redux'
 
@@ -80,6 +80,14 @@ function Login() {
       setShowPass("password");
     }
   };
+
+  useEffect(()=> {
+    if(user) {
+      history.push('/account')
+    }
+  }, [])
+
+
   return (
     <div className="div-full-page">
       <div className="div-page-title">

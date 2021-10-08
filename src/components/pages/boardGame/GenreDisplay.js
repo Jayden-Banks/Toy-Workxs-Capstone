@@ -129,7 +129,7 @@ function GenreDisplay({currSearch}) {
     } else {
       callProducts();
     }
-  }, [currSearch]);
+  }, [currSearch,]);
 
   return <div>{loading ? <GenreSort /> : <h2 id="h2-loading-products">Loading</h2>}</div>;
 }
