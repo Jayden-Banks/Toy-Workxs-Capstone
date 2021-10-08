@@ -14,7 +14,8 @@ require("./db");
 app.use(express.json());
 app.use(cors())
 // app.use(express.static(__dirname + '' )) //? I don't understand this part... give path index.js
-app.use(express.static(path.resolve(__dirname, '../client/build')))
+app.use(express.static(path.resolve(__dirname, '../build')))
+// "proxy": "http://localhost:3001/", package
 
 // Endpoints
 // Profile endpoints
@@ -38,6 +39,12 @@ app.get("/api/order/:id", orderCtrl.getOrders)
 
 // Stripe
 app.post('/create-payment-intent', orderCtrl.createCheckoutSession)
+
+
+
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, '../build', 'index.html'))
+})
 
 // listen
 app.listen(PORT, () => {
