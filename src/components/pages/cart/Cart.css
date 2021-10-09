@@ -67,6 +67,14 @@
 .input-cart-item {
   margin: auto;
 }
+.input-cart-item:hover {
+  opacity: 50%;
+}
+.input-cart-item:active {
+  opacity: 80%;
+}
+
+
 .button-remove-cart-item {
 margin-right: 1rem;
 }
@@ -92,4 +100,9 @@ margin-right: 1rem;
   font-size: 1.25rem;
   color: #a792ff;
   /* width: 80%; */
+}
+#span-cart-display {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: red;
 }

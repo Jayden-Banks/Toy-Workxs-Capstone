@@ -3,7 +3,8 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router";
 import { logout } from "../login/userSlice";
-
+import { useHistory } from 'react-router-dom'
+import './Account.css'
 /* // todo
 MVP
 - Create Header "{USER} Account"
@@ -21,6 +22,7 @@ Future Features
 function Account() {
   const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
+  const history = useHistory()
 
   const signout = () => {
     dispatch(logout());
@@ -29,12 +31,20 @@ function Account() {
   const orderHistory = async() => {
     try {
       const res = await axios.get(`/api/order/${user.id}`)
+      history.push({
+        pathname: '/orderHistory',
+        orders: res.data[0]
+      })
       console.log(res.data[0])
     } catch (err) {
       console.log(err)
     }
   }
-
+  const changeAvatar = async() => {
+    history.push({
+      pathname: '/avatar',
+    })
+  }
 
 
   return (
@@ -47,8 +57,9 @@ function Account() {
         )}
       </div>
       <div className="div-account-options">
-        <h3 className="h3-sub-title" onClick={() => orderHistory()}>Order History</h3>
-        <h3 className="h3-sub-title" onClick={() => signout()}>
+        <h3 className="h3-sub-title h3-account-order" onClick={() => orderHistory()}>Order History</h3>
+        <h3 className="h3-sub-title h3-account-order" onClick={() => changeAvatar()}>Set Profile Icon</h3>
+        <h3 className="h3-sub-title h3-account-order" onClick={() => signout()}>
           Signout
         </h3>
       </div>

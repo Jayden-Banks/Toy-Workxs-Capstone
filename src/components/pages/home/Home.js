@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css";
-import candyLand from "../../../assets/advertise/candy-land.png";
-import carasonne from "../../../assets/advertise/carasonne.jpeg";
-import pandemic from "../../../assets/advertise/pandemic.jpeg";
 import leftArrow from "../../../assets/navIcons/left-arrow.png";
 import rightArrow from "../../../assets/navIcons/right-arrow.png";
 import { Link } from "react-router-dom";
@@ -49,7 +46,7 @@ function Home() {
     "https://toy-workxs.s3.us-west-1.amazonaws.com/product-images-toyworkxs/ad-special/qwirkle.jpg"
   ];
   const [currIteration, setCurrIteration] = useState(0);
-  const [currBoardGame, setCurrBoardGame] = useState(candyLand);
+  const [currBoardGame, setCurrBoardGame] = useState('');
 
   const boardGameAdRight = () => {
     console.log(currIteration, "clicked");
@@ -105,7 +102,7 @@ function Home() {
         </div>
       </div>
       <h2 className="h3-sale-header">
-        50% Off With Coupon Code "MUSTHAVE" Today Only!
+        10% Off Total Order When Buying a Special With Coupon Code "MUSTHAVE"!
       </h2>
     </div>
   );

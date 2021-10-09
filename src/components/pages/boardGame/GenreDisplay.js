@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import strategoImage from "../../../assets/product-test/stratego.jpeg";
 import { useSelector, useDispatch} from "react-redux";
 import { itemAdded, itemRemoved } from "../cart/cartSlice";
 

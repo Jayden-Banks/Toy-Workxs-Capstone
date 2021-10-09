@@ -40,6 +40,7 @@ a {
   flex-direction: column;
   align-items: center;
   margin-bottom: 2rem;
+  z-index: 1;
 }
 .h1-page-title {
   color: #a792ff;
@@ -153,4 +154,10 @@ button:active {
 }
 .input-black:active {
   filter: invert(50%);
+}
+
+@media only screen and (min-width: 600px) {
+  /* div {
+  background-color: red;
+  } */
 }

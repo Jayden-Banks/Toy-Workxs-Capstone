@@ -17,7 +17,7 @@ import { clearCart } from "../../cart/cartSlice";
 export default function CheckoutForm(props) {
   const history = useHistory()
   // const address = props.address
-  const orderTotal = props.orderTotal
+  const orderTotal = +props.orderTotal
   const user = useSelector((state) => state.user.user);
   const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState(null);
@@ -30,6 +30,9 @@ export default function CheckoutForm(props) {
   const dispatch = useDispatch()
 
   useEffect(() => {
+    console.log(orderTotal)
+    console.log(typeof(orderTotal))
+
     // Create PaymentIntent as soon as the page loads
     window
       .fetch("/create-payment-intent", {

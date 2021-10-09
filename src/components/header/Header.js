@@ -79,8 +79,9 @@ function Header() {
           <li id="li-login-signout">
             {user ? (
               <>
+                <span id="span-media-query"> Welcome, </span>
                 <Link to="/account">
-                  <input type="button" id="input-login-nav" value={firstName} />
+                  <input type="button" id="input-login-nav" value={' ' + firstName} />
                 </Link>
                 <button id="button-sign-out" onClick={() => logUserOut()}>
                   Signout
@@ -105,6 +106,60 @@ function Header() {
             </Link>
           </li>
         </ul>
+
+        <ul id="ul-header-mediaQuery-nav">
+          <li>
+            <Link to="/">
+              <input
+                type="button"
+                className="input-hamburger"
+                value="HOME"
+              />
+            </Link>
+          
+          </li>
+
+
+          <li>
+            <Link to="/boardGame">
+              <input
+                type="button"
+                className="input-hamburger"
+                value="BOARDGAMES"
+              />
+            </Link>
+          </li>
+
+          <li>
+            <Link to="/cart">
+              <input
+                type="button"
+                className="input-hamburger"
+                value="CART"
+              />
+            </Link>
+          </li>
+          <li>
+            <Link to={user ? "/account" : "/login"}>
+              <input
+                type="button"
+                className="input-hamburger"
+                value="ACCOUNT"
+              />
+            </Link>
+          </li>
+
+
+        </ul>
+
+
+       
+
+          
+
+
+
+
         <ul id="ul-header3-nav">
           <li>
             <Link to="/boardGame">
@@ -134,8 +189,8 @@ function Header() {
                 type="image"
                 alt="Profile icon"
                 className="input-black"
-                src={profileIcon}
-                width="30px"
+                src={user.avatar ? user.avatar : profileIcon}
+                width={user.avatar ? "60px" : "30px"}
               />
             </Link>
           </li>
@@ -149,6 +204,11 @@ function Header() {
           width="200px"
         />
       </div>
+
+    {user.avatar ? <div id="div-pokemon" style={{backgroundImage: `url(${user.avatar})`}}></div> : <h2>Nothing</h2> }
+    
+    {/* </div> */}
+
 
       <div
         id="div-hamburger"

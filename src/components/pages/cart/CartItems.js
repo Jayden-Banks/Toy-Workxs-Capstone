@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useSelector, useDispatch } from "react-redux";
-import strategoImage from '../../../assets/product-test/stratego.jpeg'
 import plus from '../../../assets/navIcons/plus.png'
 import minus from '../../../assets/navIcons/minus.png'
-import { BackgroundColor } from 'chalk';
 import { itemRemoved } from './cartSlice';
 
 
@@ -104,6 +102,7 @@ function CartItems({notificationSetter, setTotalPrice, totalPrice}) {
 
   useEffect(() => {
     getCart()
+    console.log(user)
   }, [user])
   return (
     <div>

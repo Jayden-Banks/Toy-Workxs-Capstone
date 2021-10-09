@@ -2,6 +2,7 @@
   "name": "toy-workxs",
   "version": "0.1.0",
   "main": "./server/index.js",
+
   "private": true,
   "dependencies": {
     "@stripe/react-stripe-js": "^1.6.0",

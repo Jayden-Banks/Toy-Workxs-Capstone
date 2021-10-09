@@ -1,17 +1,7 @@
-import React from 'react'
-
-/* //todo
-  - div with text with copyright
-  - fixed at bottom of screen on every page
-*/
-
+import React from "react";
 
 function Footer() {
-  return (
-    <div>
-    Footer Page
-    </div>
-  )
+  return <div>Footer Page</div>;
 }
 
-export default Footer
+export default Footer;

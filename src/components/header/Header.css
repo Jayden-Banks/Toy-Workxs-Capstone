@@ -60,6 +60,7 @@
   width: 100%;
   background-color: white;
   padding-top: 2rem;
+  opacity: 100%;
 }
 .input-hamburger {
   color: #A792FF;
@@ -77,6 +78,7 @@
 }
 #ul-hamburger {
   padding-left: 20px;
+  /* z-index: 100; */
 }
 #li-login-signout {
   display: flex;
@@ -89,9 +91,89 @@
   padding-left: 0px;
 }
 #button-sign-out {
-  /* margin-top: 3px; */
   border: none;
   background-color: transparent;
   text-decoration: none;
   overflow-x: hidden;
+}
+#ul-header-mediaQuery-nav {
+  display: none;
+}
+#span-media-query {
+  display: none;
+}
+
+#div-pokemon {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  left: 0;
+  right: 0;
+  margin-right: auto;
+  margin-left: auto;
+  /* top: -50%; */
+  /* background-color: #A792FF; */
+  /* object-fit: cover; */
+  z-index: 0;
+  width: 200px;
+  height: 200px;
+}
+
+@media only screen and (min-width: 1400px) {
+  #div-pokemon {
+    width: 500px;
+    height: 500px;
+  }
+  #li-hamburger-nav {
+    display: none;
+  }
+  #ul-header1-nav {
+    justify-content: flex-start;
+    /* display: flex; */
+    /* font-size: 20rem; */
+
+  }
+  #li-login-signout {
+    display: flex;
+    font-size: 2rem;
+    flex-direction: row;
+    /* justify-content: center; */
+    align-items: center;
+    /* width: 10vw; */
+    overflow-x: visible;
+
+  }
+  #li-login-signout > button {
+    /* margin-left: 2rem; */
+    display: none;
+  }
+  #button-sign-out {
+    overflow-x: visible;
+  }
+  #ul-header2-nav {
+    display: none;
+  }
+  #ul-header-mediaQuery-nav {
+    display: flex;
+    flex-grow: 1;
+    /* background-color: red; */
+    justify-content: space-evenly;
+  }
+  .input-hamburger {
+    margin-top: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+  #input-login-nav {
+    font-size: 2rem;
+  }
+  #span-media-query {
+    color: #A792FF;
+    display:flex;
+  }
+  #link-media-query {
+    display: flex;
+    /* justify-content: center; */
+  }
 }

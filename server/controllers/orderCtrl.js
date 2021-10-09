@@ -88,6 +88,7 @@ module.exports = {
     total = Math.round(total * 100) / 100;
     console.log(total, "rounded");
     total *= 100;
+    total = Math.round(total)
     console.log(total, "price increased");
 
     const paymentIntent = await stripe.paymentIntents.create({

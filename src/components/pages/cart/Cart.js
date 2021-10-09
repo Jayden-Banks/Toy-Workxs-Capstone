@@ -86,7 +86,7 @@ function Cart() {
       </div>
       <div id="div-cart-body">
         <div id="div-cart-items">
-          {errorDisplay}
+          <span id="span-cart-display">{errorDisplay}</span>
           <CartItems
             notificationSetter={notificationSetter}
             setTotalPrice={setTotalPrice}

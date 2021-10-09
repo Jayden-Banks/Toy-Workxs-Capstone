@@ -12,6 +12,8 @@ import Shipping from "./components/pages/checkout/shipping/Shipping";
 import Payment from  "./components/pages/checkout/payment/Payment"
 import orderComplete from "./components/pages/checkout/orderComplete/OrderComplete"
 import CheckoutForm from "./components/pages/checkout/payment/CheckoutForm";
+import OrderHistory from "./components/pages/account/OrderHistory";
+import Avatar from "./components/pages/account/Avatar";
 /* //todo
   -Add all routes for all of the pages needed here (Home, Product, Login, Cart, Account) (CreateAccount, Shipping, Payment, OrderComplete) <= children pages. 
   -import those routes above
@@ -28,5 +30,7 @@ export default (
     <Route path= "/shipping" component={Shipping} />
     <Route path= "/payment" component={Payment} />
     <Route path= "/review" component={orderComplete} />
+    <Route path= "/orderHistory" component={OrderHistory} />
+    <Route path= "/avatar" component={Avatar} />
   </Switch>
 )

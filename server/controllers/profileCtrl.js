@@ -58,4 +58,34 @@ module.exports = {
         break;
     }
   },
+
+  updateAvatar: async (req, res) => {
+    const {avatar, profileId} = req.body
+    console.log(avatar, profileId)
+    try {
+      await models.Profile.update(
+        {avatar: avatar},
+        {
+          where: {
+            id: profileId,
+          },
+        }
+      );
+      console.log("GOT HERE")
+      const profile = await models.Profile.findOne(
+        {
+          where: {
+            id: profileId
+          }
+        }
+      )
+      console.log("GOT HERE TOO")
+    res.status(200).send(profile)
+    } catch (err) {
+      console.log(err)
+      res.status(400).send(err)
+    }
+  }
+
+
 };

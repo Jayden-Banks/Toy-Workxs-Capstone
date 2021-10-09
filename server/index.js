@@ -16,12 +16,18 @@ app.use(cors())
 // app.use(express.static(__dirname + '' )) //? I don't understand this part... give path index.js
 app.use(express.static(path.resolve(__dirname, '../build')))
 // "proxy": "http://localhost:3001/", package
+// "main": "./server/index.js",
+// "start": "node ./server/index.js && npm build",
+// "start": "react-scripts start",
+
+
+
 
 // Endpoints
 // Profile endpoints
 app.post("/api/profile", profileCtrl.createProfile);
 app.get("/api/profile/", profileCtrl.getProfile);
-
+app.put("/api/avatar", profileCtrl.updateAvatar)
 // Product endpoints
 app.get("/api/boardgames/", productCtrl.getBoardGames)
 

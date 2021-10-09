@@ -52,14 +52,12 @@ function Login() {
           dispatch(login(res.data))
           setSubmitSuccess(`Successful Login ${res.data.firstName}, redirecting...`)
           localStorage.setItem('user', JSON.stringify(res.data))
-          const cartRes = await axios.get(`/api/cart/products/${user.id}`)
+          // const cartRes = await axios.get(`/api/cart/products/${user.id}`)
           // SWITCH TO CART STATE
           // localStorage.setItem('cart', JSON.stringify(cartRes))
-          dispatch(allCart(cartRes))
+          // dispatch(allCart(cartRes))
           setTimeout(function() {
             history.goBack()
-            // history.push('/account')
-            // history()           
           }, 1500)          
         } catch (err) {
           if(err.response.data === 'User not found') {
