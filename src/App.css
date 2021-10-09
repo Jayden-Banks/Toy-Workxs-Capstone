@@ -33,14 +33,14 @@ a {
   flex-direction: column;
   justify-content: center;
   /* min-height: 50vh; */
-  padding-top: 20%;
+  /* padding-top: 5rem; */
 }
 .div-page-title {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 2rem;
-  z-index: 1;
+  margin-bottom: 1rem;
+  /* z-index: 1; */
 }
 .h1-page-title {
   color: #a792ff;

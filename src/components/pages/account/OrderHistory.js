@@ -14,7 +14,7 @@ function OrderHistory(props) {
         <div className="div-individual-orderHistory" key={index}>
           <h3 className="h3-orderHistory-number">Order Number: <br></br> <span className="span-orderHistory-number">{id}</span> </h3>
           <h3 className="h3-orderHistory-number h3-orderHistory-address">Name & Address: <br></br> <span className="span-orderHistory-number">{address}</span> </h3>
-          <h3 className="h3-orderHistory-number">Payment: $<br></br> <span className="span-orderHistory-number">{payment}</span> </h3>
+          <h3 className="h3-orderHistory-number">Payment: <br></br> <span className="span-orderHistory-number">${payment}</span> </h3>
         </div>
       )
     })

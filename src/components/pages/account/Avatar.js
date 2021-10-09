@@ -14,7 +14,7 @@ const dispatch = useDispatch();
 
 
   const handleChange = (value) => {
-    setCurrSearch(value)
+    setCurrSearch(value.toLowerCase())
     console.log(value)
   }
   const handleClick = async() => {
@@ -22,21 +22,10 @@ const dispatch = useDispatch();
       const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${currSearch}`)
       const image = res.data.sprites.other['official-artwork'].front_default
       setDisplayPokemon(image)
-      setSearchedPokemon(currSearch)
-      // try {
-      //   const body = {
-      //     avatar: image,
-      //     profileId: user.id
-      //   }
-      //   console.log(body)
-      //   const avatarRes = await axios.put("/api/avatar", body)
-      //   console.log(avatarRes)
-      // } catch (err) {
-      //   console.log(err)
-      // }
+      setSearchedPokemon(currSearch.toUpperCase())
     
   } catch (err) {
-    console.log(err)
+    setDisplayPokemon('')
   }
 }
 

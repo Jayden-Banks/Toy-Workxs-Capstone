@@ -41,9 +41,15 @@
   font-size: 1.25rem;
   font-family: CherryBomb;
   max-width: 125px;
+  cursor: pointer;
 
 }
-
+#input-login-nav:hover {
+  filter: opacity(50%);
+}
+#input-login-nav:active {
+  filter: opacity(0%);
+}
 
 #div-banner {
   background-color: #A792FF;
@@ -103,27 +109,13 @@
   display: none;
 }
 
-#div-pokemon {
-  position: absolute;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  left: 0;
-  right: 0;
-  margin-right: auto;
-  margin-left: auto;
-  /* top: -50%; */
-  /* background-color: #A792FF; */
-  /* object-fit: cover; */
-  z-index: 0;
-  width: 200px;
-  height: 200px;
-}
+
 
 @media only screen and (min-width: 1400px) {
   #div-pokemon {
-    width: 500px;
-    height: 500px;
+    width: 200px;
+    height: 200px;
+    /* filter: opacity(50); */
   }
   #li-hamburger-nav {
     display: none;

@@ -205,9 +205,8 @@ function Header() {
         />
       </div>
 
-    {user.avatar ? <div id="div-pokemon" style={{backgroundImage: `url(${user.avatar})`}}></div> : <h2>Nothing</h2> }
     
-    {/* </div> */}
+
 
 
       <div

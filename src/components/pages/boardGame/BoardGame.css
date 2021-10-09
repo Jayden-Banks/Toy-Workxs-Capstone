@@ -110,7 +110,11 @@
   margin-top: .25rem;
 }
 
-
+#h2-product-error {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: red;
+}
 
 
 @media only screen and (min-width: 700px) {

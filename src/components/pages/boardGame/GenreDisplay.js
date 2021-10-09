@@ -1,48 +1,51 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch} from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { itemAdded, itemRemoved } from "../cart/cartSlice";
 
-
-
-
-function GenreDisplay({currSearch}) {
+function GenreDisplay({ currSearch }) {
   const [allProducts, setAllProducts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [errorDisplay, setErrorDisplay] = useState("");
   const user = useSelector((state) => state.user.user);
-  const {id} = user
-  const dispatch = useDispatch()
-  const cart = useSelector((state) => state.cart.cart)
+  const { id } = user;
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart.cart);
 
-
-  const handleAddClick = async({id: productId}) => {
-
-    console.log(productId, user.id)
-    const body = {
-      profileId: user.id,
-      productId
+  const handleAddClick = async ({ id: productId }) => {
+    if (!user) {
+      setErrorDisplay(<h2 id="h2-product-error">User Must Be Signed in To Add</h2>);
+      setTimeout(function() {
+        setErrorDisplay('')
+      }, 1500)
+    } else {
+      console.log(productId, user.id);
+      const body = {
+        profileId: user.id,
+        productId,
+      };
+      try {
+        const res = await axios.post("/api/cart", body);
+        console.log(res);
+        dispatch(itemAdded(productId));
+      } catch (err) {
+        console.log(err);
+      }
     }
-    try {
-      const res = await axios.post("/api/cart", body)
-      console.log(res)
-      dispatch(itemAdded(productId))
+  };
 
+  const handleRemoveClick = async ({ id: productId }) => {
+    console.log("removeClick");
+    try {
+      const res = await axios.delete("/api/cart/", {
+        params: { id, productId },
+      });
+      console.log(res, "responsse");
+      dispatch(itemRemoved(productId));
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-  }
-
-  const handleRemoveClick = async({id: productId}) => {
-    console.log("removeClick")
-    try {
-      const res = await axios.delete("/api/cart/", {params: { id, productId} })
-      console.log(res, 'responsse')
-      dispatch(itemRemoved(productId))
-    } catch (err) {
-      console.log(err)
-    } 
-  }
-
+  };
 
   // Makes the initial axios get request for ALL products
   const callProducts = async () => {
@@ -57,18 +60,15 @@ function GenreDisplay({currSearch}) {
 
   const callSearchProducts = async () => {
     try {
-      const res = await axios.get("/api/boardgames/", { params: {name: currSearch}});
+      const res = await axios.get("/api/boardgames/", {
+        params: { name: currSearch },
+      });
       await setAllProducts(res.data);
       setLoading(true);
     } catch (err) {
       console.log(err);
     }
   };
-
-
-
-
-
 
   // Sorts full list of products by genre into an obj with genre keys of product arrays
   const GenreSort = () => {
@@ -114,8 +114,25 @@ function GenreDisplay({currSearch}) {
             style={{ backgroundImage: `url(${image})` }}
           ></div>
           <h4 className="h4-product-title h4-product-title-space">{name}</h4>
-          <h4 className="h4-product-title h4-product-price"><span style={{textDecoration : "underline"} }>Price</span> <br></br> ${price}</h4>
-          {cart.includes(id) ?  <button className="button-product-add" onClick={() => handleRemoveClick(element)}>Remove</button> : <button className="button-product-add" onClick={() => handleAddClick(element)}>ADD</button>}
+          <h4 className="h4-product-title h4-product-price">
+            <span style={{ textDecoration: "underline" }}>Price</span> <br></br>{" "}
+            ${price}
+          </h4>
+          {cart.includes(id) ? (
+            <button
+              className="button-product-add"
+              onClick={() => handleRemoveClick(element)}
+            >
+              Remove
+            </button>
+          ) : (
+            <button
+              className="button-product-add"
+              onClick={() => handleAddClick(element)}
+            >
+              ADD
+            </button>
+          )}
         </div>
       );
     });
@@ -123,13 +140,18 @@ function GenreDisplay({currSearch}) {
   };
 
   useEffect(() => {
-    if(currSearch) {
-      callSearchProducts()
+    if (currSearch) {
+      callSearchProducts();
     } else {
       callProducts();
     }
-  }, [currSearch,]);
+  }, [currSearch]);
 
-  return <div>{loading ? <GenreSort /> : <h2 id="h2-loading-products">Loading</h2>}</div>;
+  return (
+    <div>
+    {errorDisplay}
+      {loading ? <GenreSort /> : <h2 id="h2-loading-products">Loading</h2>}
+    </div>
+  );
 }
 export default GenreDisplay;
