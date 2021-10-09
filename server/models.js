@@ -2,7 +2,6 @@ const bcrypt = require("bcryptjs");
 const Sequelize = require("sequelize");
 const { sequelize } = require("./db");
 
-// todo Add all validations and contraints wanted for these values
 module.exports = {
   // Model for user Profiles
   Profile: sequelize.define(
@@ -14,7 +13,7 @@ module.exports = {
         validate: {
           len: [8],
         },
-      }, 
+      },
       firstName: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -30,7 +29,7 @@ module.exports = {
         },
       },
       email: {
-        type: Sequelize.STRING, 
+        type: Sequelize.STRING,
         allowNull: false,
         unique: {
           args: true,
@@ -66,27 +65,13 @@ module.exports = {
   Order: sequelize.define(
     "Order",
     {
-      profileId:  {
-  type: Sequelize.INTEGER,
-  allowNull: false,
-  validate: {
-    notEmpty: true,
-  },
-},
-      // firstName: {
-      //   type: Sequelize.STRING,
-      //   allowNull: false,
-      //   validate: {
-      //     notEmpty: true,
-      //   },
-      // },
-      // lastName: {
-      //   type: Sequelize.STRING,
-      //   allowNull: false,
-      //   validate: {
-      //     notEmpty: true,
-      //   },
-      // },
+      profileId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        validate: {
+          notEmpty: true,
+        },
+      },
       address: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -95,26 +80,12 @@ module.exports = {
         },
       },
       payment: {
-        type: Sequelize.DECIMAL, 
+        type: Sequelize.DECIMAL,
         allowNull: false,
         validate: {
           notEmpty: true,
         },
       },
-//       zipcode:  {
-//   type: Sequelize.INTEGER,
-//   allowNull: false,
-//   validate: {
-//     notEmpty: true,
-//   },
-// },
-      // state: {
-      //   type: Sequelize.STRING,
-      //   allowNull: false,
-      //   validate: {
-      //     notEmpty: true,
-      //   },
-      // },
     },
     {
       //! options
@@ -129,27 +100,27 @@ module.exports = {
   Profile_Product: sequelize.define(
     "Profile_Product",
     {
-      profileId:  {
-  type: Sequelize.INTEGER,
-  allowNull: false,
-  validate: {
-    notEmpty: true,
-  },
-},
-      productId:  {
-  type: Sequelize.INTEGER,
-  allowNull: false,
-  validate: {
-    notEmpty: true,
-  },
-},
-      quantity:  {
-  type: Sequelize.INTEGER,
-  allowNull: false,
-  validate: {
-    notEmpty: true,
-  },
-},
+      profileId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        validate: {
+          notEmpty: true,
+        },
+      },
+      productId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        validate: {
+          notEmpty: true,
+        },
+      },
+      quantity: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        validate: {
+          notEmpty: true,
+        },
+      },
     },
     {
       //! options
@@ -164,27 +135,20 @@ module.exports = {
   Order_Product: sequelize.define(
     "Order_Product",
     {
-      orderId:  {
-  type: Sequelize.INTEGER,
-  allowNull: false,
-  validate: {
-    notEmpty: true,
-  },
-},
-      productId:  {
-  type: Sequelize.INTEGER,
-  allowNull: false,
-  validate: {
-    notEmpty: true,
-  },
-},
-//       quantity:  {
-//   type: Sequelize.INTEGER,
-//   allowNull: false,
-//   validate: {
-//     notEmpty: true,
-//   },
-// },
+      orderId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        validate: {
+          notEmpty: true,
+        },
+      },
+      productId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        validate: {
+          notEmpty: true,
+        },
+      },
     },
     {
       //! options
@@ -214,7 +178,7 @@ module.exports = {
         },
       },
       price: {
-        type: Sequelize.DECIMAL, 
+        type: Sequelize.DECIMAL,
         allowNull: false,
         validate: {
           notEmpty: true,
@@ -241,9 +205,6 @@ module.exports = {
       updatedAt: false,
       timestamps: false,
       createdAt: false,
-      
-    },
-    
+    }
   ),
-}
-  // Association
+};

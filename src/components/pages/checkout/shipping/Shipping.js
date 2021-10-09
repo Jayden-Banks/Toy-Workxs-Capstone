@@ -1,47 +1,28 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useState } from 'react';
-import { useHistory } from 'react-router';
-
-
-/* // todo
-  MVP
-  - Create Header "Shipping Info"
-  - Create Form with 4 text fields and 1 drop down field (firstname, Lastname, street address, zipcode, state)
-  - Add verification check that all fields are filled out and that the zipcode and state are valid selections
-  - Create onSubmit handle that axios posts to Payment page on "Continue to Payment" where it will be added with payment info in 1 object and posted to database with order number
-  - Create text "Shipping total"
-  - Create "Continue to Payment" button
-  - Link "Continue to Payment" button to Payment Page
-
-  Future Features
-  - Add "Contact us" div (prob another component)
-*/
-
-
+import { useState } from "react";
+import { useHistory } from "react-router";
 
 function Shipping(props) {
   const [submitError, setSubmitError] = useState("");
   const [submitSuccess, setSubmitSuccess] = useState("");
-  const [addressInfo, setAddressInfo] = useState("")
-  const history = useHistory()
-  // const totalPrice = props.locations?.totalPrice
-  // console.log(totalPrice)
+  const [addressInfo, setAddressInfo] = useState("");
+  const history = useHistory();
+
   const validationSchema = Yup.object({
     firstName: Yup.string().required("Required"),
     lastName: Yup.string().required("Required"),
     address: Yup.string().required("Required"),
     zipcode: Yup.string()
-    .required("Required")
-    .matches(/^[0-9]+$/, "Must be only digits")
-    .min(5, 'Must be exactly 5 digits')
-    .max(5, 'Must be exactly 5 digits'),
+      .required("Required")
+      .matches(/^[0-9]+$/, "Must be only digits")
+      .min(5, "Must be exactly 5 digits")
+      .max(5, "Must be exactly 5 digits"),
     state: Yup.string()
       .required("Required")
-      .min(2, 'Must be exactly 2 letters')
-      .max(2, 'Must be exactly 2 letters')
-      ,
+      .min(2, "Must be exactly 2 letters")
+      .max(2, "Must be exactly 2 letters"),
   });
 
   const formik = useFormik({
@@ -53,45 +34,38 @@ function Shipping(props) {
       state: "",
     },
     onSubmit: (values, onSubmitProps) => {
-      const { firstName, lastName, address, zipcode, state } = values;
-      console.log(firstName, lastName, address, zipcode, state)
-      console.log(values)
-      let addressInfoParts = ""
-      for(const key in values) {
-        addressInfoParts += ' ' + values[key]
-        console.log(addressInfoParts)
+      let addressInfoParts = "";
+      for (const key in values) {
+        addressInfoParts += " " + values[key];
       }
-      setAddressInfo(addressInfoParts)
-      setSubmitSuccess("Address Accepted, Redirecting to Payment")
-      
+      setAddressInfo(addressInfoParts);
+      setSubmitSuccess("Address Accepted, Redirecting to Payment");
     },
     validationSchema,
   });
 
   useEffect(() => {
-    if(addressInfo) {
-      const totalPrice = props.location.totalPrice
-      const discount = props.location.discount
+    if (addressInfo) {
+      const totalPrice = props.location.totalPrice;
+      const discount = props.location.discount;
       setTimeout(function () {
         history.push({
-          pathname: '/payment',
+          pathname: "/payment",
           addressInfo,
           totalPrice,
-          discount 
-        })
-      }, 1500)
-      console.log(addressInfo)
+          discount,
+        });
+      }, 1500);
     }
-  }, [addressInfo])
-
+  }, [addressInfo]);
 
   return (
     <div className="div-full-page">
       <div className="div-page-title">
         <h1 className="h1-page-title">Shipping Info</h1>
-        </div>
+      </div>
 
-        <div className="div-form">
+      <div className="div-form">
         <h3 className="h3-error-submit">{submitError}</h3>
         <h3 className="h3-success-submit">{submitSuccess}</h3>
         <form className="form-login" onSubmit={formik.handleSubmit}>
@@ -175,10 +149,8 @@ function Shipping(props) {
           </button>
         </form>
       </div>
-
-
     </div>
-  )
+  );
 }
 
-export default Shipping
+export default Shipping;

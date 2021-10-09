@@ -5,12 +5,13 @@
 }
 /* font styles */
 @font-face {
-  font-family: CherryBomb; src:url('./assets/fonts/CherryBomb-Regular.otf');
+  font-family: CherryBomb;
+  src: url("./assets/fonts/CherryBomb-Regular.otf");
 }
 @font-face {
-  font-family: Sansation; src: url('./assets/fonts/Sansation_Regular.ttf');
+  font-family: Sansation;
+  src: url("./assets/fonts/Sansation_Regular.ttf");
 }
-
 ul {
   list-style-type: none;
   padding: 0;
@@ -21,26 +22,21 @@ input {
 a {
   text-decoration: none;
 }
-
 .buttons {
-  background-color: #5C36F5;
+  background-color: #5c36f5;
   font-family: CherryBomb;
 }
-
 /* This section controls most pages that have 1 main header and few options (login, account...) */
 .div-full-page {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* min-height: 50vh; */
-  /* padding-top: 5rem; */
 }
 .div-page-title {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 1rem;
-  /* z-index: 1; */
 }
 .h1-page-title {
   color: #a792ff;
@@ -50,9 +46,9 @@ a {
   text-align: center;
 }
 .h3-sub-title {
-  color: #5C36F5;
-  margin-top: .50rem;
-  font-size: .75rem;
+  color: #5c36f5;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
   font-family: Sansation;
   text-decoration: underline;
   font-weight: 700;
@@ -62,13 +58,11 @@ a {
 
 /* styling for forms */
 .input-text-field {
-  padding-top: .5rem;
-  padding-bottom: .5rem;
-  padding-left: .5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.5rem;
   border: 2px black solid;
   width: 175px;
-  /* margin-right: 5rem; */
-  /* margin-left: 1rem; */
 }
 .div-form-control {
   display: flex;
@@ -86,16 +80,16 @@ a {
 }
 .button-submit {
   height: fit-content;
-  background-color: #5C36F5;
+  background-color: #5c36f5;
   color: white;
   font-size: 1.5rem;
   border-radius: 20px;
   font-family: Sansation;
   font-weight: 700;
-  letter-spacing: .1rem;
+  letter-spacing: 0.1rem;
   margin-bottom: 1rem;
-  padding-left: .25rem;
-  padding-left: .50rem;
+  padding-left: 0.25rem;
+  padding-left: 0.5rem;
   text-align: center;
   width: 100px;
   min-width: fit-content;
@@ -103,17 +97,16 @@ a {
 }
 .h3-error-submit {
   text-align: center;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
   color: red;
   font-size: 1rem;
 }
 .h3-success-submit {
   text-align: center;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
   color: green;
   font-size: 1rem;
 }
-
 
 /* search fields */
 .input-search {
@@ -121,14 +114,9 @@ a {
   margin-bottom: 2rem;
 }
 
-
-
-
-
 /* pseudo selectors */
 input:hover {
   filter: brightness(125%);
-  /* filter:invert(50%) */
 }
 input:active {
   filter: brightness(150%);
@@ -150,14 +138,7 @@ button:active {
 }
 .input-black:hover {
   filter: invert(50%);
-  /* background-color: black */
 }
 .input-black:active {
   filter: invert(50%);
-}
-
-@media only screen and (min-width: 600px) {
-  /* div {
-  background-color: red;
-  } */
 }

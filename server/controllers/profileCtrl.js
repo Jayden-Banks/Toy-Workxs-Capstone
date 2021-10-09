@@ -14,7 +14,7 @@ module.exports = {
         avatar: null,
       };
       const post = await models.Profile.create(profile);
-      delete post.dataValues.passHash
+      delete post.dataValues.passHash;
       res.status(200).send(post);
     } catch (err) {
       res.status(400).send(err.errors[0].message);
@@ -44,7 +44,7 @@ module.exports = {
       });
     switch (reject) {
       case "none":
-        delete profile.dataValues.passHash
+        delete profile.dataValues.passHash;
         res.status(200).send(profile);
         break;
       case "user":
@@ -60,32 +60,25 @@ module.exports = {
   },
 
   updateAvatar: async (req, res) => {
-    const {avatar, profileId} = req.body
-    console.log(avatar, profileId)
+    const { avatar, profileId } = req.body;
     try {
       await models.Profile.update(
-        {avatar: avatar},
+        { avatar: avatar },
         {
           where: {
             id: profileId,
           },
         }
       );
-      console.log("GOT HERE")
-      const profile = await models.Profile.findOne(
-        {
-          where: {
-            id: profileId
-          }
-        }
-      )
-      console.log("GOT HERE TOO")
-    res.status(200).send(profile)
+      const profile = await models.Profile.findOne({
+        where: {
+          id: profileId,
+        },
+      });
+      res.status(200).send(profile);
     } catch (err) {
-      console.log(err)
-      res.status(400).send(err)
+      console.log(err);
+      res.status(400).send(err);
     }
-  }
-
-
+  },
 };

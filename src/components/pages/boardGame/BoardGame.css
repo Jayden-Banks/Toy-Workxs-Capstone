@@ -1,9 +1,9 @@
-.div-product-image{
-  background-color: #A792FF;
+.div-product-image {
+  background-color: #a792ff;
   width: 100px;
   height: 100px;
   background-repeat: no-repeat;
-  background-size: cover; 
+  background-size: cover;
 }
 
 /* styling for products */
@@ -25,16 +25,14 @@
   color: #5c36f5;
   font-family: CherryBomb;
   letter-spacing: 2px;
-
 }
 .div-multiple-products {
   display: flex;
   overflow-x: scroll;
-  color: #A792FF;
+  color: #a792ff;
   font-family: CherryBomb;
   font-weight: 300;
   font-size: 1rem;
-  /* flex: 1; */
   width: 270px;
   margin-right: 1rem;
 }
@@ -43,7 +41,7 @@
   width: 16px;
 }
 .div-multiple-products::-webkit-scrollbar-track {
-  background-color: #A792FF;
+  background-color: #a792ff;
   border-radius: 100px;
 }
 .div-multiple-products::-webkit-scrollbar-thumb {
@@ -60,62 +58,48 @@
   padding-top: 1rem;
 }
 .div-product-image {
-  border: 3px solid #A792FF;
+  border: 3px solid #a792ff;
   border-radius: 20px;
   box-shadow: 1px 1px 5px 5px #5c36f5;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 .h4-product-title {
-  margin-bottom: .25rem;
-  /* margin-top: .25rem; */
-  /* white-space: nowrap; */
-  /* overflow-x: hidden; */
+  margin-bottom: 0.25rem;
 }
 .button-product-add {
   height: fit-content;
-  background-color: #A792FF;
+  background-color: #a792ff;
   color: white;
   font-size: 1.5rem;
   border-radius: 20px;
   font-family: CherryBomb;
-  letter-spacing: .1rem;
+  letter-spacing: 0.1rem;
   margin-bottom: 1rem;
-  padding-left: .25rem;
-  padding-left: .50rem;
+  padding-left: 0.25rem;
+  padding-left: 0.5rem;
 }
 .button-product-add:hover {
   font-size: 2rem;
 }
 .div-scroll-arrows {
   display: flex;
-  /* width: 40%; */
-  /* flex: 1; */
-  /* align-items: center; */
   justify-content: center;
-  /* flex-wrap: wrap; */
-  /* overflow: hidden; */
-}
-.button-scroll {
-  /* flex: 1; */
 }
 #h2-loading-products {
-  color: #A792FF;
+  color: #a792ff;
 }
-
 .h4-product-title-space {
   height: 25px;
-  margin-top: .25rem;
+  margin-top: 0.25rem;
 }
 .h4-product-price {
-  margin-top: .25rem;
+  margin-top: 0.25rem;
 }
-
 #h2-product-error {
   text-align: center;
   margin-bottom: 1rem;
   color: red;
 }
-
 
 @media only screen and (min-width: 700px) {
   .div-multiple-products {

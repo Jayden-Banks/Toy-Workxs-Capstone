@@ -1,5 +1,3 @@
-#div-home {
-}
 .h2-header {
   text-align: center;
   font-family: CherryBomb;
@@ -63,5 +61,5 @@
   text-align: center;
 }
 #li-login-signout {
-  max-width: 50px
+  max-width: 50px;
 }

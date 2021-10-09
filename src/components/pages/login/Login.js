@@ -4,35 +4,16 @@ import * as Yup from "yup";
 import axios from "axios";
 import "./Login.css";
 import { useEffect, useState } from "react";
-import { login } from './userSlice'
-import { useSelector, useDispatch } from 'react-redux'
-import { allCart } from "../cart/cartSlice";
-
-/* // todo
-  MVP
-  - Create Header "Log in"
-  - Create "Create Account" button
-  - Link "Create Account" button to CreateAccount Page
-  - Create form with 2 input fields (email, password)
-  - password cannot display while being typed
-  - onSubmit handle that compares inputs to users in database for verification (bcrypt will have to used here)
-  - Create "Log in" button that will submit the form
-  - Link "Log in" button success to User Account or fail
-  - Create fail log in verification that notifies user the email and password were not found
-  
-  Future Features
-  - Create "forgot password" Link that allows user to reset password
-  - Create "Remember me" checkbox selection that will save a cookie to user to stay logged in on refresh
-  - Create div "Having Issues?" other component
-*/
+import { login } from "./userSlice";
+import { useSelector, useDispatch } from "react-redux";
 
 function Login() {
-  const history = useHistory()
-  const user = useSelector((state) => state.user.user)
-  const dispatch = useDispatch()
+  const history = useHistory();
+  const user = useSelector((state) => state.user.user);
+  const dispatch = useDispatch();
   const [showPass, setShowPass] = useState("password");
-  const [submitError, setSubmitError] = useState('')
-  const [submitSuccess, setSubmitSuccess] = useState(false)
+  const [submitError, setSubmitError] = useState("");
+  const [submitSuccess, setSubmitSuccess] = useState(false);
   const validationSchema = Yup.object({
     email: Yup.string().email("Invalid email format").required("Required"),
     password: Yup.string().required("Required"),
@@ -45,33 +26,31 @@ function Login() {
     },
     onSubmit: (values, onSubmitProps) => {
       const { email, password } = values;
-      (async() => {
+      (async () => {
         try {
-          const res = await axios.get('api/profile/', {params: { email, password}})
-          setSubmitError(false)
-          dispatch(login(res.data))
-          setSubmitSuccess(`Successful Login ${res.data.firstName}, redirecting...`)
-          localStorage.setItem('user', JSON.stringify(res.data))
-          // const cartRes = await axios.get(`/api/cart/products/${user.id}`)
-          // SWITCH TO CART STATE
-          // localStorage.setItem('cart', JSON.stringify(cartRes))
-          // dispatch(allCart(cartRes))
-          setTimeout(function() {
-            history.goBack()
-          }, 1500)          
+          const res = await axios.get("api/profile/", {
+            params: { email, password },
+          });
+          setSubmitError(false);
+          dispatch(login(res.data));
+          setSubmitSuccess(
+            `Successful Login ${res.data.firstName}, redirecting...`
+          );
+          localStorage.setItem("user", JSON.stringify(res.data));
+          setTimeout(function () {
+            history.goBack();
+          }, 1500);
         } catch (err) {
-          if(err.response.data === 'User not found') {
-            setSubmitError('Incorrect email')
-          } else if(err.response.data === 'Incorrect password') {
-            setSubmitError('Incorrect password')
-          } 
-          else {
-            setSubmitError('Something went wrong')
+          if (err.response.data === "User not found") {
+            setSubmitError("Incorrect email");
+          } else if (err.response.data === "Incorrect password") {
+            setSubmitError("Incorrect password");
+          } else {
+            setSubmitError("Something went wrong");
           }
         }
-      })()
+      })();
       onSubmitProps.setSubmitting(false);
-      // onSubmitProps.resetForm();
     },
     validationSchema,
   });
@@ -84,12 +63,11 @@ function Login() {
     }
   };
 
-  useEffect(()=> {
-    if(user) {
-      history.push('/account')
+  useEffect(() => {
+    if (user) {
+      history.push("/account");
     }
-  }, [])
-
+  }, []);
 
   return (
     <div className="div-full-page">

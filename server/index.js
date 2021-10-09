@@ -13,14 +13,12 @@ require("./db");
 
 app.use(express.json());
 app.use(cors())
-// app.use(express.static(__dirname + '' )) //? I don't understand this part... give path index.js
 app.use(express.static(path.resolve(__dirname, '../build')))
+// For Deployment / Testing
 // "proxy": "http://localhost:3001/", package
 // "main": "./server/index.js",
 // "start": "node ./server/index.js && npm build",
 // "start": "react-scripts start",
-
-
 
 
 // Endpoints
@@ -28,6 +26,7 @@ app.use(express.static(path.resolve(__dirname, '../build')))
 app.post("/api/profile", profileCtrl.createProfile);
 app.get("/api/profile/", profileCtrl.getProfile);
 app.put("/api/avatar", profileCtrl.updateAvatar)
+
 // Product endpoints
 app.get("/api/boardgames/", productCtrl.getBoardGames)
 
@@ -46,8 +45,6 @@ app.get("/api/order/:id", orderCtrl.getOrders)
 
 // Stripe
 app.post('/create-payment-intent', orderCtrl.createCheckoutSession)
-
-
 
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, '../build', 'index.html'))

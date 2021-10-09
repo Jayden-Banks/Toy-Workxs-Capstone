@@ -1,26 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { Redirect } from "react-router";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../login/userSlice";
 
-/* // todo
-  MVP
-  - Create Header "Create Account"
-  - Create form with 3 text inputs (first name, last name, email)
-  - onSubmit handle that verifies the 3 inputs, gives feedback and then posts info to database with a successfully created account message
-  - Create "Create" button
-
-  Future Features
-  - Create div "Having Issues" other component
-  - email already used error verification message
-*/
-
 function CreateAccount() {
-  const user = useSelector((state) => state.user.user)
+  const user = useSelector((state) => state.user.user);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -47,7 +34,7 @@ function CreateAccount() {
     },
     onSubmit: (values, onSubmitProps) => {
       const { firstName, lastName, email, password: passHash } = values;
-      
+
       (async () => {
         const body = {
           firstName,
@@ -64,7 +51,6 @@ function CreateAccount() {
             history.push("/account");
           }, 2000);
         } catch (err) {
-          console.log(err.response.data);
           switch (err.response.data) {
             case "Validation len on passHash failed":
               setSubmitError("Password must be 8 or more characters");
@@ -82,11 +68,10 @@ function CreateAccount() {
     validationSchema,
   });
   useEffect(() => {
-    if(user ) {
-      console.log('yes')
-      history.push("/account")
+    if (user) {
+      history.push("/account");
     }
-  })
+  });
 
   return (
     <div className="div-full-page">

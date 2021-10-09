@@ -4,13 +4,12 @@
   align-items: center;
   text-align: center;
   padding-top: 1rem;
-
 }
 #div-order-complete-info > * {
   margin-top: 1rem;
 }
 #h2-order-number {
-  color: #a792ff ;
+  color: #a792ff;
 }
 .span-order-number {
   color: #5c36f5;

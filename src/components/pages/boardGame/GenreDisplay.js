@@ -14,19 +14,19 @@ function GenreDisplay({ currSearch }) {
 
   const handleAddClick = async ({ id: productId }) => {
     if (!user) {
-      setErrorDisplay(<h2 id="h2-product-error">User Must Be Signed in To Add</h2>);
-      setTimeout(function() {
-        setErrorDisplay('')
-      }, 1500)
+      setErrorDisplay(
+        <h2 id="h2-product-error">User Must Be Signed in To Add</h2>
+      );
+      setTimeout(function () {
+        setErrorDisplay("");
+      }, 1500);
     } else {
-      console.log(productId, user.id);
       const body = {
         profileId: user.id,
         productId,
       };
       try {
-        const res = await axios.post("/api/cart", body);
-        console.log(res);
+        await axios.post("/api/cart", body);
         dispatch(itemAdded(productId));
       } catch (err) {
         console.log(err);
@@ -35,12 +35,10 @@ function GenreDisplay({ currSearch }) {
   };
 
   const handleRemoveClick = async ({ id: productId }) => {
-    console.log("removeClick");
     try {
-      const res = await axios.delete("/api/cart/", {
+      await axios.delete("/api/cart/", {
         params: { id, productId },
       });
-      console.log(res, "responsse");
       dispatch(itemRemoved(productId));
     } catch (err) {
       console.log(err);
@@ -149,7 +147,7 @@ function GenreDisplay({ currSearch }) {
 
   return (
     <div>
-    {errorDisplay}
+      {errorDisplay}
       {loading ? <GenreSort /> : <h2 id="h2-loading-products">Loading</h2>}
     </div>
   );

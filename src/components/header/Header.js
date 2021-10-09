@@ -13,22 +13,6 @@ import { login, logout } from "../pages/login/userSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { itemAdded } from "../pages/cart/cartSlice";
 import axios from "axios";
-/* //todo
-  MVP
-  - Create a fixed Header that is at the very top of screen
-  - Needs all nav icons ( Logo, login, cart, profile) search is not mvp
-  - Nav icons are links to pages (if user is not signed in then profile icon links to login page otherwise, account page)
-  - Banner under header that has company name "Toy Workxs" in center
-  - Should display if user is logged in with their name
-  - Should display based off of mobile or desktop size
-  - Mobile should have link to hamburger page
-  - Desktop should have links to ALL pages listed in figma wireframe (Home, Board Games) start with these mvp
-  - Create a sign out option 
-
-  Future Features
-  - Link "search Icon" to search screen
-  - Create text "user" if logged in
-*/
 
 function Header() {
   const user = useSelector((state) => state.user.user);
@@ -81,7 +65,11 @@ function Header() {
               <>
                 <span id="span-media-query"> Welcome, </span>
                 <Link to="/account">
-                  <input type="button" id="input-login-nav" value={' ' + firstName} />
+                  <input
+                    type="button"
+                    id="input-login-nav"
+                    value={" " + firstName}
+                  />
                 </Link>
                 <button id="button-sign-out" onClick={() => logUserOut()}>
                   Signout
@@ -110,15 +98,9 @@ function Header() {
         <ul id="ul-header-mediaQuery-nav">
           <li>
             <Link to="/">
-              <input
-                type="button"
-                className="input-hamburger"
-                value="HOME"
-              />
+              <input type="button" className="input-hamburger" value="HOME" />
             </Link>
-          
           </li>
-
 
           <li>
             <Link to="/boardGame">
@@ -132,11 +114,7 @@ function Header() {
 
           <li>
             <Link to="/cart">
-              <input
-                type="button"
-                className="input-hamburger"
-                value="CART"
-              />
+              <input type="button" className="input-hamburger" value="CART" />
             </Link>
           </li>
           <li>
@@ -148,17 +126,7 @@ function Header() {
               />
             </Link>
           </li>
-
-
         </ul>
-
-
-       
-
-          
-
-
-
 
         <ul id="ul-header3-nav">
           <li>
@@ -204,10 +172,6 @@ function Header() {
           width="200px"
         />
       </div>
-
-    
-
-
 
       <div
         id="div-hamburger"
