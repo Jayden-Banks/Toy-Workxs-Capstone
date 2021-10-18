@@ -56,7 +56,7 @@
   opacity: 50%;
 }
 .input-cart-item:active {
-  opacity: 80%;
+  opacity: 25%;
 }
 .button-remove-cart-item {
   margin-right: 1rem;
