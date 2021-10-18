@@ -11,6 +11,8 @@ import Payment from  "./components/pages/checkout/payment/Payment"
 import orderComplete from "./components/pages/checkout/orderComplete/OrderComplete"
 import OrderHistory from "./components/pages/account/OrderHistory";
 import Avatar from "./components/pages/account/Avatar";
+import Plushies from "./components/pages/plushies/Plushies"
+import Toy from "./components/pages/toy/Toy"
 
 export default (
   <Switch>
@@ -19,6 +21,8 @@ export default (
     <Route path= "/login" component={Login} />
     <Route path= "/account" component={Account} />
     <Route path= "/boardGame" component={BoardGame} />
+    <Route path= "/plushie" component={Plushies} />
+    <Route path= "/toy" component={Toy} />
     <Route path= "/createAccount" component={CreateAccount} />
     <Route path= "/shipping" component={Shipping} />
     <Route path= "/payment" component={Payment} />

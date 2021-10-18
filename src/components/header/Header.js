@@ -111,6 +111,24 @@ function Header() {
               />
             </Link>
           </li>
+          <li>
+            <Link to="/plushie">
+              <input
+                type="button"
+                className="input-hamburger"
+                value="PLUSHIES"
+              />
+            </Link>
+          </li>
+          <li>
+            <Link to="/toy">
+              <input
+                type="button"
+                className="input-hamburger"
+                value="TOYS"
+              />
+            </Link>
+          </li>
 
           <li>
             <Link to="/cart">
@@ -194,6 +212,26 @@ function Header() {
                 type="button"
                 className="input-hamburger"
                 value="BOARD GAMES"
+                onClick={() => handleClick()}
+              />
+            </Link>
+          </li>
+          <li>
+            <Link to="/plushie">
+              <input
+                type="button"
+                className="input-hamburger"
+                value="PLUSHIES"
+                onClick={() => handleClick()}
+              />
+            </Link>
+          </li>
+          <li>
+            <Link to="/toy">
+              <input
+                type="button"
+                className="input-hamburger"
+                value="TOYS"
                 onClick={() => handleClick()}
               />
             </Link>

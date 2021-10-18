@@ -29,6 +29,8 @@ app.put("/api/avatar", profileCtrl.updateAvatar)
 
 // Product endpoints
 app.get("/api/boardgames/", productCtrl.getBoardGames)
+app.get("/api/plushies/", productCtrl.getPlushies)
+app.get("/api/candy/", productCtrl.getToys)
 
 // Cart endpoints
 app.get("/api/cart/:profileId", cartCtrl.getCart)

@@ -5,6 +5,7 @@
   font-weight: 300;
   margin-top: 1rem;
   margin-bottom: 1rem;
+  font-size: 2rem;
 }
 .div-boardGame-ad {
   display: flex;
@@ -34,14 +35,15 @@
   align-items: center;
 
   background-color: #a792ff;
-  width: 200px;
-  height: 300px;
+  width: 300px;
+  height: 450px;
   background-repeat: no-repeat;
   background-size: cover;
   border: 3px solid #a792ff;
   border-radius: 10%;
   box-shadow: 1px 1px 5px 5px #5c36f5;
-  padding-top: 8rem;
+  padding-top: 12rem;
+  padding-bottom: 2rem;
 }
 #div-input-arrows {
   display: flex;
@@ -59,7 +61,49 @@
   font-size: 1.5rem;
   margin-top: 1rem;
   text-align: center;
+  margin-bottom: 4rem;
 }
 #li-login-signout {
   max-width: 50px;
+}
+
+#div-plushie-ad {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* margin-bottom: 6rem; */
+}
+
+
+#div-plushie-ad-pictures {
+  /* background-image: url(https://toy-workxs.s3.us-west-1.amazonaws.com/plushies/dinosaur/angry-trex.jpg); */
+  width: 100%;
+  height: 500px;
+  max-width: 500px;
+  max-height: 100vw;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+
+  background-color: #a792ff;
+  /* width: 200px; */
+  /* height: 300px; */
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 14rem;
+  padding-bottom: 2rem;
+  margin-bottom: 1rem;
+}
+#h2-lego-products{
+  margin-bottom: 2rem;
+}
+@media only screen and (min-width: 1400px) {
+  /* #div-plushie-ad-pictures {
+    width: 100%;
+    max-width: none;
+    height: 100vw;
+  } */
+
 }
