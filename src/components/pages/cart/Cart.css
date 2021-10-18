@@ -53,10 +53,10 @@
   margin: auto;
 }
 .input-cart-item:hover {
-  opacity: 50%;
+  filter: opacity(50%)
 }
 .input-cart-item:active {
-  opacity: 25%;
+  filter:opacity(25%)
 }
 .button-remove-cart-item {
   margin-right: 1rem;
