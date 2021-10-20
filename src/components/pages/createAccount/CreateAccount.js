@@ -47,6 +47,7 @@ function CreateAccount() {
           setSubmitError(false);
           setSubmitSuccess("Account Successfully Created, redirecting...");
           dispatch(login(res.data));
+          localStorage.setItem("user", JSON.stringify(res.data));
           setTimeout(function () {
             history.push("/account");
           }, 2000);
